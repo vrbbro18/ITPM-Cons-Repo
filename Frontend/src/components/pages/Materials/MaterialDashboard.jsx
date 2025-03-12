@@ -12,6 +12,7 @@ const MaterialDashboard = () => {
     { id: 3, name: "Bricks", quantity: 5000, unit: "Pieces", value: 3500, lastUpdated: "2025-03-25" },
     { id: 4, name: "Sand", quantity: 30, unit: "Tons", value: 2400, lastUpdated: "2025-03-26" },
     { id: 5, name: "Gravel", quantity: 25, unit: "Tons", value: 1800, lastUpdated: "2025-03-24" },
+    { id: 6, name: "notes", quantity: 25, unit: "Tons", value: 1800, lastUpdated: "2025-03-24" },
   ];
   
   // Filter materials based on search term
