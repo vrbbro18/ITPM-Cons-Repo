@@ -15,7 +15,7 @@ export default function Home() {
       <Services />
       <Appointment />
       <Portfolio />
-      <Teams />
+      {/* <Teams /> */}
       <Blogs blogsNumber={3} />
     </>
   );

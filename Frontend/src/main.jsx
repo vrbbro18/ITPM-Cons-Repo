@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./layouts/Home.jsx";
@@ -11,33 +10,28 @@ import { Provider } from "react-redux";
 import mySiteStore from "./store/index.js";
 import Blogs from "./components/Blogs.jsx";
 import BlogDetails from "./components/BlogDetails.jsx";
+import SignIn from "./components/SignIn.jsx";
+import ProjectList from "./components/pages/ProjectList.jsx";
+import ProjectDetails from "./components/pages/ProjectDetails.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/construction-company-react-app",
     element: <App />,
     children: [
-      { path: "/construction-company-react-app", element: <Home /> },
-      { path: "/construction-company-react-app/about", element: <AboutTab /> },
-      {
-        path: "/construction-company-react-app/services",
-        element: <ServicesTab />,
-      },
-      {
-        path: "/construction-company-react-app/blogs",
-        element: <Blogs blogsNumber={10} />,
-      },
-      {
-        path: "/construction-company-react-app/blogdetails/:id",
-        element: <BlogDetails />,
-      },
-      {
-        path: "/construction-company-react-app/contact",
-        element: <ContactTab />,
-      },
+      { path: "", element: <Home /> }, // Default route
+      { path: "about", element: <AboutTab /> },
+      { path: "services", element: <ServicesTab /> },
+      { path: "blogs", element: <Blogs blogsNumber={10} /> },
+      { path: "blogdetails/:id", element: <BlogDetails /> },
+      { path: "contact", element: <ContactTab /> },
+      { path: "signin", element: <SignIn /> },
+      { path: "projects", element: <ProjectList /> },
+      { path: "projectDetails/:id", element: <ProjectDetails />},
     ],
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={mySiteStore}>

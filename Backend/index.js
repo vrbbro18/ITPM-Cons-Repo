@@ -4,6 +4,8 @@ import cors from "cors";
 import { PORT, mongoDBURL } from "./config.js";
 import signupRoutes from "./routes/signUp.js";
 import signInRoutes from "./routes/signIn.js"
+import projectRoutes from "./routes/projects.js"
+import projectDetails from "./routes/projectDetails.js"
 
 const app = express();
 app.use(express.json());
@@ -12,6 +14,8 @@ app.use(cors());
 // Use Signup Routes
 app.use("/signUp", signupRoutes);
 app.use("/signin", signInRoutes);
+app.use("/projects", projectRoutes);
+app.use("/projectDetails", projectDetails);
 
 // Connect to MongoDB and start server
 mongoose.connect(mongoDBURL)

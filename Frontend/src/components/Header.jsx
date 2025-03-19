@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 export default function Header({ pageName, setPageName }) {
   const [show, setShow] = useState("");
 
-  const showNavbar = () => {
-    if (show === "") {
-      setShow("show");
-    } else {
-      setShow("");
-    }
-  };
+  // const showNavbar = () => {
+  //   if (show === "") {
+  //     setShow("show");
+  //   } else {
+  //     setShow("");
+  //   }
+  // };
   return (
     <div className="container-fluid sticky-top bg-dark bg-light-radial shadow-sm px-5 pe-lg-0">
       <nav className="navbar navbar-expand-lg bg-dark bg-light-radial navbar-dark py-3 py-lg-0">
@@ -27,7 +27,7 @@ export default function Header({ pageName, setPageName }) {
           </h1>
         </Link>
         <button
-          onClick={showNavbar}
+          // onClick={showNavbar}
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -120,6 +120,18 @@ export default function Header({ pageName, setPageName }) {
               }}
             >
               Contact Us
+            </Link>
+            <Link
+              to="/construction-company-react-app/SignIn"
+              className={`nav-item nav-link ${
+                pageName === "SignIn" && "active"
+              }`}
+              onClick={(e) => {
+                setPageName("SignIn");
+                setShow("");
+              }}
+            >
+              User
             </Link>
             <Link
               to="/construction-company-react-app/contact"
