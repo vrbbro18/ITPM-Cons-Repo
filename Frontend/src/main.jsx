@@ -13,6 +13,7 @@ import BlogDetails from "./components/BlogDetails.jsx";
 import SignIn from "./components/SignIn.jsx";
 import ProjectList from "./components/pages/ProjectList.jsx";
 import ProjectDetails from "./components/pages/ProjectDetails.jsx";
+import MainDashboard from "./components/MainDashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "signin", element: <SignIn /> },
       { path: "projects", element: <ProjectList /> },
       { path: "projectDetails/:id", element: <ProjectDetails />},
+      { path: "MainDashboard", element: <MainDashboard />},
     ],
   },
 ]);

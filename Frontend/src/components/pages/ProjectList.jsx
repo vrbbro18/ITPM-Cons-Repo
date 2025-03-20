@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../assets/css/style.css"
+import "../../assets/css/pages.css"
+
 
 const ProjectList = () => {
     const [projects, setProjects] = useState([]);
@@ -37,36 +39,39 @@ const ProjectList = () => {
     if (projects.length === 0) return <p>No projects available.</p>;
 
     return (
-        <div className="container">
-            <h2>Manager Dashboard - Projects</h2>
-            <table className="project-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Client</th>
-                        <th>Status</th>
-                        <th>Type</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {projects.map((project) => (
-                        <tr key={project._id}>
-                            <td>{project.name}</td>
-                            <td>{project.client}</td>
-                            <td>{project.status}</td>
-                            <td>{project.type}</td>
-                            <td>
-                                <button 
-                                    onClick={() => navigate(`/construction-company-react-app/projectDetails/${project._id}`)}
-                                >
-                                    View
-                                </button>
-                            </td>
+        <div>
+            {/* <SecondaryHeader /> */}
+            <div className="container">
+                <h2>Manager Dashboard - Projects</h2>
+                <table className="project-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Type</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {projects.map((project) => (
+                            <tr key={project._id}>
+                                <td>{project.name}</td>
+                                <td>{project.client}</td>
+                                <td>{project.status}</td>
+                                <td>{project.type}</td>
+                                <td>
+                                    <button
+                                        onClick={() => navigate(`/construction-company-react-app/projectDetails/${project._id}`)}
+                                    >
+                                        View
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };

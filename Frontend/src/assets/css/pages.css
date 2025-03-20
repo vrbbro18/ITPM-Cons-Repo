@@ -1,0 +1,12 @@
+.project-container {
+    background-image: url("https://d2gg9evh47fn9z.cloudfront.net/1600px_COLOURBOX22644291.jpg"); /* Replace with your image path */
+    background-size: cover;  /* Cover the full container */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure full height */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

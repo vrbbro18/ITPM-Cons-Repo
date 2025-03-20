@@ -24,7 +24,7 @@ const Login = () => {
 
             localStorage.setItem("token", data.token);
            
-            navigate("/construction-company-react-app/projects");
+            navigate("/construction-company-react-app/MainDashboard");
         } catch (error) {
             alert(error.message);
         }

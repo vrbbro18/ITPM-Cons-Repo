@@ -3,7 +3,7 @@ import React from "react";
 export default function Footer() {
   return (
     <>
-      <div className="footer container-fluid position-relative bg-dark bg-light-radial text-white-50 py-6 px-5">
+      <div className="footer container-fluid position-relative bg-dark bg-light-radial text-white-50 py-3 px-3">
         <div className="row g-5">
           <div className="col-lg-6 pe-lg-5">
             <a href="index.html" className="navbar-brand">

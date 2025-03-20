@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Header({ pageName, setPageName }) {
+export default function SecondaryHeader({ pageName, setPageName }) {
   const [show, setShow] = useState("");
 
   const showNavbar = () => {
@@ -83,32 +83,6 @@ export default function Header({ pageName, setPageName }) {
             >
               Blogs
             </Link>
-            <div className="nav-item dropdown">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                data-bs-toggle="dropdown"
-              >
-                Pages
-              </a>
-              <div className="dropdown-menu m-0">
-                <a href="project.html" className="dropdown-item">
-                  Our Project
-                </a>
-                <a href="team.html" className="dropdown-item">
-                  The Team
-                </a>
-                <a href="testimonial.html" className="dropdown-item">
-                  Testimonial
-                </a>
-                <a href="blog.html" className="dropdown-item">
-                  Blog Grid
-                </a>
-                <a href="detail.html" className="dropdown-item">
-                  Blog Detail
-                </a>
-              </div>
-            </div>
             <Link
               to="/construction-company-react-app/contact"
               className={`nav-item nav-link ${
@@ -133,16 +107,7 @@ export default function Header({ pageName, setPageName }) {
             >
               User
             </Link>
-            <Link
-              to="/construction-company-react-app/contact"
-              className="nav-item nav-link  bg-secondary text-white px-5 ms-3 d-none d-lg-block"
-              onClick={(e) => {
-                setPageName("Contact");
-                setShow("");
-              }}
-            >
-              Request A Demo <i className="bi bi-arrow-right"></i>
-            </Link>
+            
           </div>
         </div>
       </nav>
