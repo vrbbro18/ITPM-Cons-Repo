@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useParams, Link } from 'react-router-dom';
 
 
-const ProjectList = () => {
+const CustomerList = () => {
   const [projects, setProjects] = useState([]);
   const { serviceType } = useParams();
 
@@ -64,4 +64,4 @@ const ProjectList = () => {
   );
 };
 
-export default ProjectList;
+export default CustomerList;

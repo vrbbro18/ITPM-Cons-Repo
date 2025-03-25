@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const EditProject = () => {
+const EditCustomer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -129,4 +129,4 @@ const EditProject = () => {
   );
 };
 
-export default EditProject;
+export default EditCustomer;
