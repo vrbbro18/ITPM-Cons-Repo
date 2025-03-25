@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
-    customerName: '',
+    name: '',
     email: '',
     phone: '',
     serviceType: 'construction',
@@ -13,7 +13,7 @@ const CustomerForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/customers', {
+      const response = await axios.post('http://localhost:5000/api/customer', {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -54,7 +54,7 @@ const CustomerForm = () => {
           <input
             type="text"
             id="customerName"
-            name="customerName"
+            name="name"
             value={formData.customerName}
             onChange={handleChange}
             required

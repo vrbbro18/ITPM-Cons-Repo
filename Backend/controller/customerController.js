@@ -1,5 +1,5 @@
 import Customer from "../models/customer.js";
-
+import mongoose from "mongoose"; 
 // Create new customer
 export const createCustomer = async (req, res) => {
   try {
@@ -29,6 +29,29 @@ export const createCustomer = async (req, res) => {
   }
 };
 
+// Add this to your existing controller
+export const getCustomerById = async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).json({
+        success: false,
+        message: 'Customer not found'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: customer
+    });
+  } catch (error) {
+    console.error('Error fetching customer:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error'
+    });
+  }
+};
+
 // Get all customers
 export const getCustomers = async (req, res) => {
   try {
@@ -53,33 +76,43 @@ export const getCustomers = async (req, res) => {
 // Update customer
 export const updateCustomer = async (req, res) => {
   try {
-    const customer = await Customer.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
+    let { id } = req.params;
+    id = id.trim(); // Remove any newline or space characters
+
+    // Validate if id is a valid MongoDB ObjectId
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid customer ID format",
+      });
+    }
+
+    const customer = await Customer.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    });
 
     if (!customer) {
       return res.status(404).json({
         success: false,
-        message: 'Customer not found'
+        message: "Customer not found",
       });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Customer updated successfully',
-      data: customer
+      message: "Customer updated successfully",
+      data: customer,
     });
   } catch (error) {
-    console.error('Error updating customer:', error);
+    console.error("Error updating customer:", error);
     res.status(500).json({
       success: false,
-      message: 'Internal server error'
+      message: "Internal server error",
+      error: error.message,
     });
   }
 };
-
 // Delete customer
 export const deleteCustomer = async (req, res) => {
   try {
