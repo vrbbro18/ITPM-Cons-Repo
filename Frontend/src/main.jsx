@@ -14,13 +14,16 @@ import SignIn from "./components/SignIn.jsx";
 import ProjectList from "./components/pages/ProjectList.jsx";
 import ProjectDetails from "./components/pages/ProjectDetails.jsx";
 import MainDashboard from "./components/MainDashboard.jsx";
+import CustomerForm from "./components/pages/Customer/CustomerForm";
+import CustomerDetails from "./components/pages/Customer/CustomerDetails";
+import EditProject from "./components/pages/Customer/EditProject";
 
 const router = createBrowserRouter([
   {
     path: "/construction-company-react-app",
     element: <App />,
     children: [
-      { path: "", element: <Home /> }, // Default route
+      { path: "", element: <Home /> },
       { path: "about", element: <AboutTab /> },
       { path: "services", element: <ServicesTab /> },
       { path: "blogs", element: <Blogs blogsNumber={10} /> },
@@ -28,8 +31,13 @@ const router = createBrowserRouter([
       { path: "contact", element: <ContactTab /> },
       { path: "signin", element: <SignIn /> },
       { path: "projects", element: <ProjectList /> },
-      { path: "projectDetails/:id", element: <ProjectDetails />},
-      { path: "MainDashboard", element: <MainDashboard />},
+      { path: "projectDetails/:id", element: <ProjectDetails /> },
+      { path: "MainDashboard", element: <MainDashboard /> },
+      // Add customer routes
+      { path: "customer", element: <CustomerForm /> },
+      { path: "customer-details", element: <CustomerDetails /> },
+      { path: "projects/edit/:id", element: <EditProject /> },
+      { path: "projects/:serviceType", element: <ProjectList /> }
     ],
   },
 ]);

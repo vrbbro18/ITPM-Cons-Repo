@@ -1,16 +1,16 @@
-import express from "express"
-import project from "../models/project.js"
+// import express from "express"
+// import project from "../models/project.js"
 
-const router = express.Router()
+// const router = express.Router()
 
-router.get('/', async(req,res) =>{
-    try{
-        const projects = await project.find()
-        res.status(200).json(projects);
-    }catch(error){
-        res.status(500).json({ message: "Server error", error });
-    }
-});
+// router.get('/', async(req,res) =>{
+//     try{
+//         const projects = await project.find()
+//         res.status(200).json(projects);
+//     }catch(error){
+//         res.status(500).json({ message: "Server error", error });
+//     }
+// });
 
 
-export default router
+// export default router

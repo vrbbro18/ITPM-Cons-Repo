@@ -42,19 +42,7 @@ export default function Contact() {
                   style={{ height: "55px" }}
                 />
               </div>
-              {/* Construction or Consulting Option */}
-              <div className="col-12 col-sm-6">
-                <select
-                  className="form-control border-0"
-                  style={{ height: "55px" }}
-                >
-                  <option value="" disabled selected>
-                    Choose Option
-                  </option>
-                  <option value="construction">Construction</option>
-                  <option value="consulting">Consulting</option>
-                </select>
-              </div>
+             
               {/* Message */}
               <div className="col-12">
                 <textarea
