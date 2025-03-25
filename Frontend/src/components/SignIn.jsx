@@ -4,7 +4,7 @@ import "../assets/css/style.css";
 
 const Login = () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState({ username: "", password: "" });
+    const [formData, setFormData] = useState({ email: "", password: "" });
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,11 +36,11 @@ const Login = () => {
                 <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label>Username</label>
+                        <label>email</label>
                         <input
                             type="text"
-                            name="username"
-                            value={formData.username}
+                            name="email"
+                            value={formData.email}
                             onChange={handleChange}
                             required
                         />
@@ -56,9 +56,13 @@ const Login = () => {
                         />
                     </div>
                     <button type="submit" className="btn">Login</button>
-                    {/* <button type="button" className="signup-button" onClick={() => navigate("/signup")}>
-                        Signup
+                    {/* <button type="button" className="signup-button" onClick={() => navigate("/construction-company-react-app/signUp")}>
+                       Signup
                     </button> */}
+                    
+                    <button type="button" className="forgot-password-button" onClick={() => navigate("/construction-company-react-app/forget-password")}>
+                        Forget Password
+                    </button>
                 </form>
             </div>
         </div>

@@ -14,9 +14,9 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Sidebar */}
+      {/* sidebar */}
       <aside className="sidebar">
-        <h2 className="sidebar-title">Admin Panel</h2>
+        <h2 className="sidebar-title">Build Ease</h2>
         <nav>
           <ul className="sidebar-menu">
             <li><a href="/construction-company-react-app/MainDashboard"><i className="fas fa-home"></i> Home</a></li>
@@ -29,7 +29,7 @@ const AdminDashboard = () => {
 
         {/* Logout Button */}
         <div className="logout-button">
-          <i className="fas fa-sign-out-alt"></i> Logout
+          <i className="fas fa-sign-out-alt"></i> 
         </div>
       </aside>
 

@@ -14,6 +14,7 @@ import SignIn from "./components/SignIn.jsx";
 import ProjectList from "./components/pages/ProjectList.jsx";
 import ProjectDetails from "./components/pages/ProjectDetails.jsx";
 import MainDashboard from "./components/MainDashboard.jsx";
+import Signup from "./components/SignUp.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "blogdetails/:id", element: <BlogDetails /> },
       { path: "contact", element: <ContactTab /> },
       { path: "signin", element: <SignIn /> },
+      { path: "signUp", element: <Signup />},
       { path: "projects", element: <ProjectList /> },
       { path: "projectDetails/:id", element: <ProjectDetails />},
       { path: "MainDashboard", element: <MainDashboard />},
