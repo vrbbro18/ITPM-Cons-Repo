@@ -7,12 +7,12 @@ const router = express.Router();
 
 // Signin Route
 router.post("/", async (req, res) => {
-    // console.log("username",username)
-    const { username, password } = req.body;
+    
+    const { email, password } = req.body;
 
     try {
         // Check if user exists
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
