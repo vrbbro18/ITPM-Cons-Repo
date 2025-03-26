@@ -2,8 +2,8 @@
 .form-container {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
+    padding: 20px; /* Reduced from p-5 (5rem) for consistency */
+    background-color: #f8f9fa; /* Light gray, matching bg-light */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -12,7 +12,7 @@
   .form-container h2 {
     margin: 0 0 20px 0;
     font-size: 1.5em;
-    color: #374151; /* Dark gray from dashboard */
+    color: #374151; /* Dark gray from your project */
     text-align: center;
   }
   
@@ -20,7 +20,7 @@
   .project-form {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between form groups */
+    gap: 15px; /* Matches g-3 spacing (approx. 1rem) */
   }
   
   /* Form group (label + input/select/textarea) */
@@ -39,59 +39,65 @@
   
   /* Inputs */
   .form-input {
-    padding: 10px;
+    height: 55px; /* Matches Contact form */
+    padding: 10px 15px; /* Slightly more padding like form-control */
     font-size: 1em;
-    border: 1px solid #e5e7eb; /* Light gray border */
+    border: none; /* border-0 */
     border-radius: 4px;
-    background-color: #f9fafb; /* Very light gray background */
+    background-color: #ffffff; /* White background for contrast */
     color: #374151;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075); /* Subtle inset shadow */
     outline: none;
-    transition: border-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
   }
   
   .form-input:focus {
-    border-color: #3b82f6; /* Blue on focus */
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Blue glow on focus */
   }
   
   /* Select dropdown */
   .form-select {
-    padding: 10px;
+    height: 55px; /* Matches Contact form */
+    padding: 10px 15px;
     font-size: 1em;
-    border: 1px solid #e5e7eb;
+    border: none; /* border-0 */
     border-radius: 4px;
-    background-color: #f9fafb;
+    background-color: #ffffff;
     color: #374151;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
     outline: none;
     cursor: pointer;
-    transition: border-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
   }
   
   .form-select:focus {
-    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   
   /* Textarea */
   .form-textarea {
-    padding: 10px;
+    height: 150px; /* Matches Contact form */
+    padding: 10px 15px;
     font-size: 1em;
-    border: 1px solid #e5e7eb;
+    border: none; /* border-0 */
     border-radius: 4px;
-    background-color: #f9fafb;
+    background-color: #ffffff;
     color: #374151;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
     outline: none;
     resize: vertical; /* Allow vertical resize only */
-    min-height: 100px;
-    transition: border-color 0.2s ease-in-out;
+    transition: box-shadow 0.2s ease-in-out;
   }
   
   .form-textarea:focus {
-    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   
-  /* Submit button (reusing edit-btn from CustomerDashboard.css) */
+  /* Submit button */
   .submit-btn {
-    padding: 10px 20px;
-    background-color: #3b82f6; /* Blue */
+    width: 100%; /* w-100 */
+    padding: 15px; /* Matches py-3 (approx. 1rem) */
+    background-color: #3b82f6; /* Matches your project’s blue */
     color: white;
     border: none;
     border-radius: 4px;
@@ -123,24 +129,31 @@
     }
   
     .submit-btn {
-      padding: 8px 16px;
+      padding: 12px;
       font-size: 0.9em;
     }
   }
 
-  /* Container for sidebar and form */
-.customer-form-container {
+  /* Page wrapper to contain header, content, and footer */
+.page-wrapper {
     display: flex;
+    flex-direction: column;
     min-height: 100vh;
   }
   
-  /* Form container */
+  /* Content wrapper to push footer down */
+  .content-wrapper {
+    flex: 1;
+    padding: 40px 20px;
+    background-color: #f3f4f6;
+  }
+  
+  /* Container for the entire form */
   .form-container {
-    flex: 1; /* Takes remaining space after sidebar */
     max-width: 600px;
-    margin: 20px auto; /* Centers form with some top/bottom margin */
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f8f9fa; /* Light gray, matching previous design */
+    background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -149,7 +162,7 @@
   .form-container h2 {
     margin: 0 0 20px 0;
     font-size: 1.5em;
-    color: #374151; /* Dark gray */
+    color: #374151;
     text-align: center;
   }
   
@@ -157,7 +170,7 @@
   .project-form {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Matches previous spacing */
+    gap: 15px;
   }
   
   /* Form group (label + input/select/textarea) */
@@ -250,15 +263,19 @@
   
   /* Error message */
   .error-message {
-    color: #ef4444; /* Red to match your project’s delete-btn */
+    color: #ef4444; /* Red to match delete-btn */
     font-size: 0.9em;
     margin-top: 5px;
   }
   
   /* Responsive adjustments */
   @media (max-width: 768px) {
+    .content-wrapper {
+      padding: 20px 10px;
+    }
+  
     .form-container {
-      margin: 10px;
+      margin: 0 10px;
       padding: 15px;
     }
   

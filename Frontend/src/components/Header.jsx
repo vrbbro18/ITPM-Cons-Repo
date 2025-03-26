@@ -134,7 +134,7 @@ export default function Header({ pageName, setPageName }) {
               User
             </Link>
             <Link
-  to="/construction-company-react-app/customerForm"
+  to="/construction-company-react-app/customerDemoForm"
   className="nav-item nav-link bg-secondary text-white px-5 ms-3 d-none d-lg-block"
   onClick={(e) => {
     setPageName("CustomerForm");

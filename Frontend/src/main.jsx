@@ -21,6 +21,7 @@ import CustomerForm from "./components/pages/Customer/customerForm.jsx";
 import EditCustomer from "./components/pages/Customer/editCustomer.jsx";
 import ConstructionPage from "./components/pages/Customer/constructionPage.jsx";
 import ConsultingPage from "./components/pages/Customer/consultingPage.jsx";
+import CustomerDemoForm from "./components/pages/Customer/customerDemoForm.jsx";
 
 
 
@@ -46,7 +47,8 @@ const router = createBrowserRouter([
       { path: "editCustomer/:id", element: <EditCustomer /> },
       { path: "customerList/:serviceType?", element: <CustomerList />},
       { path: "constructions", element: <ConstructionPage /> },
-      { path: "consulting", element: <ConsultingPage /> }
+      { path: "consulting", element: <ConsultingPage /> },
+      { path: "customerDemoForm", element: <CustomerDemoForm /> }
       
     
 
