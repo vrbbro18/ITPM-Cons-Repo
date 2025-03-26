@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import './Styles/CustomerForm.css'; // Adjust path based on your structure
+import Sidebar from "../Common/Sidebar";
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
@@ -37,8 +39,12 @@ const CustomerForm = () => {
     });
   };
 
-  return (
-    <div className="form-container">
+  return (  
+      <div className="customer-form-container">
+      <Sidebar />
+    
+    <div className="form-container" >
+      
       <h2>New Project Request</h2>
       <form onSubmit={handleSubmit} className="project-form">
         <div className="form-group">
@@ -115,6 +121,7 @@ const CustomerForm = () => {
           Submit Request
         </button>
       </form>
+    </div>
     </div>
   );
 };

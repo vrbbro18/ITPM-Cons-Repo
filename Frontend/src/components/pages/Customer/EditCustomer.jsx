@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import './Styles/EditCustomer.css'; // Adjust path based on your structure
+import Sidebar from "../Common/Sidebar";
 
 const EditCustomer = () => {
   const { id } = useParams();
@@ -15,7 +17,8 @@ const EditCustomer = () => {
     budget: 0,
     startDate: "",
     endDate: "",
-    adminNotes: ""
+    adminNotes: "",
+    message: ""
   });
 
   useEffect(() => {
@@ -54,6 +57,7 @@ const EditCustomer = () => {
       alert('Error updating customer');
     }
   };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -62,6 +66,8 @@ const EditCustomer = () => {
   };
 
   return (
+    <div className="customer-form-container">
+      <Sidebar />
     <div className="edit-customer-form">
       <h2>Edit Customer Details</h2>
       <form onSubmit={handleSubmit}>
@@ -170,12 +176,13 @@ const EditCustomer = () => {
         </div>
         <button type="submit">Update Customer</button>
         <button 
-  type="button" 
-  onClick={() => navigate("/construction-company-react-app/customerDashboard")}
->
-  Cancel
-</button>
+          type="button" 
+          onClick={() => navigate("/construction-company-react-app/customerDashboard")}
+        >
+          Cancel
+        </button>
       </form>
+    </div>
     </div>
   );
 };

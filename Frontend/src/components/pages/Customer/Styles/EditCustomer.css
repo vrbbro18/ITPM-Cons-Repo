@@ -1,0 +1,151 @@
+/* Container for the edit form */
+.edit-customer-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form heading */
+  .edit-customer-form h2 {
+    margin: 0 0 20px 0;
+    font-size: 1.5em;
+    color: #374151; /* Dark gray */
+    text-align: center;
+  }
+  
+  /* Form styling */
+  .edit-customer-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form groups */
+  }
+  
+  /* Form group (label + input/select/textarea) */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Space between label and input */
+  }
+  
+  /* Labels */
+  .form-group label {
+    font-size: 1em;
+    font-weight: 600;
+    color: #374151; /* Dark gray */
+  }
+  
+  /* Inputs */
+  .form-group input {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e5e7eb; /* Light gray border */
+    border-radius: 4px;
+    background-color: #f9fafb; /* Very light gray background */
+    color: #374151;
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .form-group input:focus {
+    border-color: #3b82f6; /* Blue on focus */
+  }
+  
+  /* Select dropdown */
+  .form-group select {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background-color: #f9fafb;
+    color: #374151;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .form-group select:focus {
+    border-color: #3b82f6;
+  }
+  
+  /* Textarea */
+  .form-group textarea {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    background-color: #f9fafb;
+    color: #374151;
+    outline: none;
+    resize: vertical; /* Allow vertical resize only */
+    min-height: 100px;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .form-group textarea:focus {
+    border-color: #3b82f6;
+  }
+  
+  /* Update button */
+  .edit-customer-form button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #3b82f6; /* Blue, matching edit-btn */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .edit-customer-form button[type="submit"]:hover {
+    background-color: #2563eb; /* Darker blue on hover */
+  }
+  
+  /* Cancel button */
+  .edit-customer-form button[type="button"] {
+    padding: 10px 20px;
+    background-color: #ef4444; /* Red, matching delete-btn */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px; /* Space between buttons */
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .edit-customer-form button[type="button"]:hover {
+    background-color: #dc2626; /* Darker red on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .edit-customer-form {
+      margin: 10px;
+      padding: 15px;
+    }
+  
+    .edit-customer-form h2 {
+      font-size: 1.3em;
+    }
+  
+    .form-group label {
+      font-size: 0.9em;
+    }
+  
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-size: 0.9em;
+    }
+  
+    .edit-customer-form button {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+  }

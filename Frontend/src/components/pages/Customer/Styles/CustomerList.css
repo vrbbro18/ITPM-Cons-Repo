@@ -1,0 +1,44 @@
+.customer-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .customer-table th, .customer-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .customer-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .customer-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .customer-table .status {
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
+  .customer-table .status.pending {
+    background-color: #ffeb3b;
+  }
+  
+  .customer-table .status.in-progress {
+    background-color: #2196f3;
+    color: white;
+  }
+  
+  .customer-table .status.completed {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .customer-table .edit.btn, .customer-table .delete.btn {
+    margin-right: 5px;
+    padding: 5px 10px;
+  }

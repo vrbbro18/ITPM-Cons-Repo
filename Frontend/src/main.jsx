@@ -19,6 +19,8 @@ import CustomerList from "./components/pages/Customer/customerList.jsx";
 import SignUp from "./components/signUp.jsx";
 import CustomerForm from "./components/pages/Customer/customerForm.jsx";
 import EditCustomer from "./components/pages/Customer/editCustomer.jsx";
+import ConstructionPage from "./components/pages/Customer/constructionPage.jsx";
+import ConsultingPage from "./components/pages/Customer/consultingPage.jsx";
 
 
 
@@ -42,7 +44,10 @@ const router = createBrowserRouter([
       { path: "MainDashboard", element: <MainDashboard />},
       { path: "customerForm", element: <CustomerForm />},
       { path: "editCustomer/:id", element: <EditCustomer /> },
-      { path: "customerList/:serviceType?", element: <CustomerList />}
+      { path: "customerList/:serviceType?", element: <CustomerList />},
+      { path: "constructions", element: <ConstructionPage /> },
+      { path: "consulting", element: <ConsultingPage /> }
+      
     
 
 

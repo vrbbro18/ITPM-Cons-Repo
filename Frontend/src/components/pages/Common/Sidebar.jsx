@@ -8,27 +8,27 @@ const Sidebar = () => {
       <nav>
         <ul className="sidebar-menu">
           <li>
-            <Link to="/MainDashboard">
+            <Link to="/construction-company-react-app/MainDashboard">
               <i className="fas fa-home"></i> Dashboard
             </Link>
           </li>
           <li>
-            <Link to="/customerList">
+            <Link to="/construction-company-react-app/customerDashboard">
               <i className="fas fa-users"></i> All Requests
             </Link>
           </li>
           <li>
-            <Link to="/customerList/construction">
+            <Link to="/construction-company-react-app/constructions">
               <i className="fas fa-hard-hat"></i> Construction
             </Link>
           </li>
           <li>
-            <Link to="/customerList/consulting">
+            <Link to="/construction-company-react-app/consulting">
               <i className="fas fa-chart-line"></i> Consulting
             </Link>
           </li>
           <li>
-            <Link to="/customerForm">
+            <Link to="/construction-company-react-app/customerForm">
               <i className="fas fa-plus-circle"></i> New Request
             </Link>
           </li>
