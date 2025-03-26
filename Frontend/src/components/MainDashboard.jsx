@@ -20,7 +20,7 @@ const AdminDashboard = () => {
         <nav>
           <ul className="sidebar-menu">
             <li><a href="/construction-company-react-app/MainDashboard"><i className="fas fa-home"></i> Home</a></li>
-            <li><a href="/construction-company-react-app/editCustomer"><i className="fas fa-user"></i> Customer Requests</a></li>
+            <li><a href="/construction-company-react-app/customerDashboard"><i className="fas fa-user"></i> Customer Requests</a></li>
             <li><a href="/construction-company-react-app/projects"><i className="fas fa-tasks"></i> Projects</a></li>
             <li><a href="/admin/inquiries"><i className="fas fa-envelope"></i> Stocks & Materials</a></li>
             <li><a href="/admin/settings"><i className="fas fa-shopping-cart"></i> Billing & Payments</a></li>

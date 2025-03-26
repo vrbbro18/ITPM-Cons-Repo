@@ -1,46 +1,59 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams, useNavigate } from "react-router-dom";
 
 const EditCustomer = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    projectType: 'Residential',
-    status: 'Pending',
-    startDate: '',
-    endDate: '',
+    name: "",
+    email: "",
+    phone: "",
+    serviceType: "construction",
+    status: "pending",
+    projectName: "",
     budget: 0,
-    adminNotes: ''
+    startDate: "",
+    endDate: "",
+    adminNotes: ""
   });
 
   useEffect(() => {
-    const fetchProject = async () => {
-      const res = await axios.get(`http://localhost:5000/projects/${id}`);
-      setFormData({
-        projectType: res.data.projectType,
-        status: res.data.status,
-        startDate: res.data.startDate?.split('T')[0] || '',
-        endDate: res.data.endDate?.split('T')[0] || '',
-        budget: res.data.budget || 0,
-        adminNotes: res.data.adminNotes || ''
-      });
+    const fetchCustomer = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/customer/${id}`);
+        const data = res.data.data;
+        setFormData({
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          serviceType: data.serviceType,
+          status: data.status,
+          projectName: data.projectName || "",
+          budget: data.budget || 0,
+          startDate: data.startDate ? data.startDate.split('T')[0] : '',
+          endDate: data.endDate ? data.endDate.split('T')[0] : '',
+          adminNotes: data.adminNotes || "",
+          message: data.message || ""
+        });
+      } catch (error) {
+        console.error('Error fetching customer:', error);
+        alert('Failed to load customer data');
+      }
     };
-    fetchProject();
+    fetchCustomer();
   }, [id]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/projects/${id}`, formData);
-      alert('Project updated successfully!');
-      navigate('/projects');
+      await axios.put(`http://localhost:5000/api/customer/${id}`, formData);
+      navigate('/construction-company-react-app/customerDashboard');
     } catch (error) {
-      console.error(error);
-      alert('Error updating project');
+      console.error('Update error:', error);
+      alert('Error updating customer');
     }
   };
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -49,57 +62,68 @@ const EditCustomer = () => {
   };
 
   return (
-    <div className="edit-project-form">
-      <h2>Edit Project Details</h2>
+    <div className="edit-customer-form">
+      <h2>Edit Customer Details</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Project Type:</label>
-          <select
-            name="projectType"
-            value={formData.projectType}
-            onChange={handleChange}
-          >
-            <option value="Residential">Residential</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Industrial">Industrial</option>
-            <option value="Renovation">Renovation</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Status:</label>
-          <select
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-          >
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Completed">Completed</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>Start Date:</label>
+          <label>Name:</label>
           <input
-            type="date"
-            name="startDate"
-            value={formData.startDate}
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Phone:</label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label>Service Type:</label>
+          <select
+            name="serviceType"
+            value={formData.serviceType}
+            onChange={handleChange}
+          >
+            <option value="construction">Construction</option>
+            <option value="consulting">Consulting</option>
+          </select>
+        </div>
+        <div className="form-group">
+          <label>Message:</label>
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            rows="4"
+          />
+        </div>
+        <div className="form-group">
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="projectName"
+            value={formData.projectName}
             onChange={handleChange}
           />
         </div>
-
-        <div className="form-group">
-          <label>End Date:</label>
-          <input
-            type="date"
-            name="endDate"
-            value={formData.endDate}
-            onChange={handleChange}
-          />
-        </div>
-
         <div className="form-group">
           <label>Budget:</label>
           <input
@@ -109,7 +133,32 @@ const EditCustomer = () => {
             onChange={handleChange}
           />
         </div>
-
+        <div className="form-group">
+          <label>Start Date:</label>
+          <input
+            type="date"
+            name="startDate"
+            value={formData.startDate}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>End Date:</label>
+          <input
+            type="date"
+            name="endDate"
+            value={formData.endDate}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label>Status:</label>
+          <select name="status" value={formData.status} onChange={handleChange}>
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
         <div className="form-group">
           <label>Admin Notes:</label>
           <textarea
@@ -119,11 +168,13 @@ const EditCustomer = () => {
             rows="4"
           />
         </div>
-
-        <button type="submit">Update Project</button>
-        <button type="button" onClick={() => navigate('/projects')}>
-          Cancel
-        </button>
+        <button type="submit">Update Customer</button>
+        <button 
+  type="button" 
+  onClick={() => navigate("/construction-company-react-app/customerDashboard")}
+>
+  Cancel
+</button>
       </form>
     </div>
   );

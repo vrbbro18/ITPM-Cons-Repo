@@ -1,65 +1,92 @@
 import React, { useEffect, useState } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom';
-
+import Sidebar from "../Common/Sidebar";
 
 const CustomerList = () => {
-  const [projects, setProjects] = useState([]);
   const { serviceType } = useParams();
-
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const url = serviceType 
-        ? `http://localhost:5000/projects?serviceType=${serviceType}`
-        : 'http://localhost:5000/projects';
-      
-      const res = await axios.get(url);
-      setProjects(res.data);
-    };
-    fetchProjects();
-  }, [serviceType]);
+  const [customers, setCustomers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCustomers = async () => {
       try {
-        const url = serviceType 
-          ? `/api/customers?serviceType=${serviceType}`
-          : '/api/customers';
-        
-        const response = await axios.get(url);
-        setCustomers(response.data.data);
+        setLoading(true);
+        const res = await axios.get(`/api/customer?serviceType=${serviceType || ''}&search=${searchTerm}`);
+        setCustomers(res.data.data || []);
       } catch (error) {
         console.error('Error fetching customers:', error);
+      } finally {
+        setLoading(false);
       }
     };
-    
     fetchCustomers();
-  }, [serviceType]);
+  }, [serviceType, searchTerm]);
+
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure you want to delete this customer?")) {
+      try {
+        await axios.delete(`/api/customer/${id}`);
+        setCustomers(prev => prev.filter(c => c._id !== id));
+      } catch (error) {
+        console.error('Delete error:', error);
+      }
+    }
+  };
 
   return (
-    <div>
-      {projects.length > 0 ? (
-        projects.map((project) => (
-          <div key={project._id} className="project-card">
-            <h3>{project.customerName}</h3>
-            <p>Service: {project.serviceType}</p>
-            <Link to={`/projects/edit/${project._id}`}>Edit</Link>
-          </div>
-        ))
-      ) : (
-        <p>No projects found.</p>
-      )}
-      <button 
-  onClick={async () => {
-    if (window.confirm('Are you sure you want to delete this project?')) {
-      await axios.delete(`http://localhost:5000/projects/${project._id}`);
-      // Refresh projects list
-      fetchProjects();
-    }
-  }}
+    <div className="dashboard-container">
+      <Sidebar />
+      <div className="main-content">
+        <div className="header">
+          <h2>{serviceType ? `${serviceType} Projects` : 'All Projects'}</h2>
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        {loading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          <div className="customer-list">
+            {customers.map(customer => (
+              <div key={customer._id} className="customer-card">
+                <div className="card-header">
+                  <h3>{customer.name}</h3>
+                  <span className={`status ${customer.status}`}>
+                    {customer.status}
+                  </span>
+                </div>
+                <div className="card-body">
+                  <p>Email: {customer.email}</p>
+                  <p>Phone: {customer.phone}</p>
+                  <p>Service: {customer.serviceType}</p>
+                  {customer.projectName && <p>Project: {customer.projectName}</p>}
+                </div>
+                <div className="card-actions">
+                <button 
+  className="edit-btn"
+  onClick={() => navigate(`/construction-company-react-app/editCustomer/${customer._id}`)}
 >
-  Delete
+  Edit
 </button>
+                  <button 
+                    className="delete-btn"
+                    onClick={() => handleDelete(customer._id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

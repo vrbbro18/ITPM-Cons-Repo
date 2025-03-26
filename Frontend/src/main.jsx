@@ -41,8 +41,8 @@ const router = createBrowserRouter([
       { path: "customerDashboard", element: <CustomerDashboard />},
       { path: "MainDashboard", element: <MainDashboard />},
       { path: "customerForm", element: <CustomerForm />},
-      { path: "editCustomer", element: <EditCustomer /> },
-      { path: "customerList", element: <CustomerList />}
+      { path: "editCustomer/:id", element: <EditCustomer /> },
+      { path: "customerList/:serviceType?", element: <CustomerList />}
     
 
 

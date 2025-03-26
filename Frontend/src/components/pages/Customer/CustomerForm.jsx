@@ -1,47 +1,39 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    serviceType: 'construction',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    serviceType: "construction",
+    message: "",
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/customer', {
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        serviceType: formData.serviceType,
-        message: formData.message
-      });
-  
+      const response = await axios.post("http://localhost:5000/api/customer", formData);
       if (response.data.success) {
-        alert('Customer submitted successfully!');
-        // Reset form
+        alert("Customer submitted successfully!");
         setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          serviceType: 'construction',
-          message: ''
+          name: "",
+          email: "",
+          phone: "",
+          serviceType: "construction",
+          message: "",
         });
       }
     } catch (error) {
-      console.error('Submission error:', error);
-      alert(error.response?.data?.message || 'Error submitting form');
+      console.error("Submission error:", error);
+      alert(error.response?.data?.message || "Error submitting form");
     }
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -50,12 +42,12 @@ const CustomerForm = () => {
       <h2>New Project Request</h2>
       <form onSubmit={handleSubmit} className="project-form">
         <div className="form-group">
-          <label htmlFor="customerName">Full Name:</label>
+          <label htmlFor="name">Full Name:</label>
           <input
             type="text"
-            id="customerName"
+            id="name"
             name="name"
-            value={formData.customerName}
+            value={formData.name}
             onChange={handleChange}
             required
             className="form-input"
@@ -116,7 +108,7 @@ const CustomerForm = () => {
             className="form-textarea"
             placeholder="Describe your project requirements"
             rows="4"
-          ></textarea>
+          />
         </div>
 
         <button type="submit" className="submit-btn">
