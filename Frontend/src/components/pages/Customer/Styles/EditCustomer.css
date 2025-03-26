@@ -6,20 +6,20 @@
   
   /* Container for the edit form */
   .edit-customer-form {
-    flex: 1; /* Takes remaining space after sidebar */
-    max-width: 800px; /* Increased from 600px for wider form */
-    margin: 20px auto; /* Centers form with top/bottom margin */
-    padding: 30px; /* Increased from 20px for more internal space */
+    flex: 1;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px;
     background-color: #ffffff;
-    border-radius: 10px; /* Slightly larger radius */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
   
   /* Form heading */
   .edit-customer-form h2 {
-    margin: 0 0 25px 0; /* Increased bottom margin */
-    font-size: 1.8em; /* Increased from 1.5em */
-    color: #374151; /* Dark gray */
+    margin: 0 0 25px 0;
+    font-size: 1.8em;
+    color: #374151;
     text-align: center;
   }
   
@@ -27,46 +27,46 @@
   .edit-customer-form form {
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Increased from 20px for more spacing */
+    gap: 25px;
   }
   
   /* Form group (label + input/select/textarea) */
   .form-group {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Increased from 8px */
+    gap: 10px;
   }
   
   /* Labels */
   .form-group label {
-    font-size: 1.1em; /* Increased from 1em */
+    font-size: 1.1em;
     font-weight: 600;
-    color: #374151; /* Dark gray */
+    color: #374151;
   }
   
   /* Inputs */
   .form-group input {
-    padding: 12px 15px; /* Increased padding for taller inputs */
-    height: 55px; /* Increased to match CustomerForm */
-    font-size: 1.1em; /* Increased from 1em */
-    border: 1px solid #e5e7eb; /* Light gray border */
-    border-radius: 6px; /* Slightly larger radius */
-    background-color: #f9fafb; /* Very light gray background */
+    padding: 12px 15px;
+    height: 55px;
+    font-size: 1.1em;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #f9fafb;
     color: #374151;
     outline: none;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
   
   .form-group input:focus {
-    border-color: #3b82f6; /* Blue on focus */
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5); /* Added subtle glow */
+    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   
   /* Select dropdown */
   .form-group select {
-    padding: 12px 15px; /* Increased padding */
-    height: 55px; /* Increased to match inputs */
-    font-size: 1.1em; /* Increased from 1em */
+    padding: 12px 15px;
+    height: 55px;
+    font-size: 1.1em;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
     background-color: #f9fafb;
@@ -83,15 +83,15 @@
   
   /* Textarea */
   .form-group textarea {
-    padding: 12px 15px; /* Increased padding */
-    font-size: 1.1em; /* Increased from 1em */
+    padding: 12px 15px;
+    font-size: 1.1em;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
     background-color: #f9fafb;
     color: #374151;
     outline: none;
-    resize: vertical; /* Allow vertical resize only */
-    min-height: 150px; /* Increased from 100px to match CustomerForm */
+    resize: vertical;
+    min-height: 150px;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   }
   
@@ -102,70 +102,81 @@
   
   /* Update button */
   .edit-customer-form button[type="submit"] {
-    padding: 15px 25px; /* Increased from 10px 20px */
-    background-color: #3b82f6; /* Blue */
+    padding: 15px 25px;
+    background-color: #3b82f6;
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 1.1em; /* Increased from 1em */
+    font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   }
   
   .edit-customer-form button[type="submit"]:hover {
-    background-color: #2563eb; /* Darker blue */
-    transform: translateY(-2px); /* Slight lift on hover */
+    background-color: #2563eb;
+    transform: translateY(-2px);
   }
   
   /* Cancel button */
   .edit-customer-form button[type="button"] {
-    padding: 15px 25px; /* Increased from 10px 20px */
-    background-color: #ef4444; /* Red */
+    padding: 15px 25px;
+    background-color: #ef4444;
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 1.1em; /* Increased from 1em */
+    font-size: 1.1em;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 15px; /* Increased from 10px */
+    margin-top: 15px;
     transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   }
   
   .edit-customer-form button[type="button"]:hover {
-    background-color: #dc2626; /* Darker red */
-    transform: translateY(-2px); /* Slight lift on hover */
+    background-color: #dc2626;
+    transform: translateY(-2px);
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #ef4444; /* Red to match delete-btn */
+    font-size: 0.9em;
+    margin-top: 5px;
   }
   
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .edit-customer-form {
-      max-width: 100%; /* Full width on smaller screens */
+      max-width: 100%;
       margin: 10px;
-      padding: 20px; /* Reduced from 30px */
+      padding: 20px;
     }
   
     .edit-customer-form h2 {
-      font-size: 1.5em; /* Reduced from 1.8em */
+      font-size: 1.5em;
     }
   
     .form-group label {
-      font-size: 1em; /* Reduced from 1.1em */
+      font-size: 1em;
     }
   
     .form-group input,
     .form-group select,
     .form-group textarea {
-      font-size: 1em; /* Reduced from 1.1em */
-      height: 50px; /* Slightly reduced for inputs/select */
+      font-size: 1em;
+      height: 50px;
     }
   
     .form-group textarea {
-      min-height: 120px; /* Reduced from 150px */
+      min-height: 120px;
     }
   
     .edit-customer-form button {
-      padding: 12px 20px; /* Reduced from 15px 25px */
-      font-size: 1em; /* Reduced from 1.1em */
+      padding: 12px 20px;
+      font-size: 1em;
+    }
+  
+    .error-message {
+      font-size: 0.8em;
     }
   }
