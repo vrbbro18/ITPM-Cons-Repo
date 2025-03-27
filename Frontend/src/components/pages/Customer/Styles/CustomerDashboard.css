@@ -1,0 +1,184 @@
+.stats-grid {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .stat-card {
+    flex: 1;
+    max-width: 200px;
+    padding: 20px;
+    margin: 0 10px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+  }
+  
+  .stat-card p {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .stat-card.total-requests {
+    background-color: #6b7280;
+  }
+  
+  .stat-card.construction-requests {
+    background-color: #1d4ed8;
+  }
+  
+  .stat-card.consulting-requests {
+    background-color: #15803d;
+  }
+  
+  .stat-card:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .customer-table th,
+  .customer-table td {
+    padding: 12px;
+    border: 1px solid #e5e7eb;
+    text-align: left;
+  }
+  
+  .customer-table th {
+    background-color: #f3f4f6;
+    font-weight: 600;
+    color: #374151;
+  }
+  
+  .customer-table tr:nth-child(even) {
+    background-color: #f9fafb;
+  }
+  
+  .customer-table tr:hover {
+    background-color: #e5e7eb;
+  }
+  
+  .customer-table .status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    color: white;
+  }
+  
+  .customer-table .status-badge.pending {
+    background-color: #f59e0b;
+  }
+  
+  .customer-table .status-badge.in-progress {
+    background-color: #3b82f6;
+  }
+  
+  .customer-table .status-badge.completed {
+    background-color: #10b981;
+  }
+  
+  .edit-btn {
+    padding: 6px 12px;
+    margin-right: 8px;
+    background-color: #3b82f6;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .edit-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  .delete-btn {
+    padding: 6px 12px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #dc2626;
+  }
+  
+  .report-section {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .report-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5em;
+    color: #374151;
+  }
+  
+  .report-section p {
+    margin: 0 0 15px 0;
+    color: #6b7280;
+  }
+  
+  .report-section button {
+    margin-right: 10px;
+    margin-top: 15px;
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  .controls input {
+    width: 50%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .controls input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  
+  .controls button {
+    padding: 10px 15px;
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .controls button:hover {
+    background-color: #2563eb;
+  }
+  

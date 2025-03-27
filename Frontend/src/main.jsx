@@ -14,7 +14,17 @@ import SignIn from "./components/SignIn.jsx";
 import ProjectList from "./components/pages/ProjectList.jsx";
 import ProjectDetails from "./components/pages/ProjectDetails.jsx";
 import MainDashboard from "./components/MainDashboard.jsx";
-import Signup from "./components/SignUp.jsx";
+import CustomerDashboard from "./components/pages/Customer/customerDashboard.jsx";
+import CustomerList from "./components/pages/Customer/customerList.jsx";
+import SignUp from "./components/signUp.jsx";
+import CustomerForm from "./components/pages/Customer/customerForm.jsx";
+import EditCustomer from "./components/pages/Customer/editCustomer.jsx";
+import ConstructionPage from "./components/pages/Customer/constructionPage.jsx";
+import ConsultingPage from "./components/pages/Customer/consultingPage.jsx";
+import CustomerDemoForm from "./components/pages/Customer/customerDemoForm.jsx";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -28,10 +38,22 @@ const router = createBrowserRouter([
       { path: "blogdetails/:id", element: <BlogDetails /> },
       { path: "contact", element: <ContactTab /> },
       { path: "signin", element: <SignIn /> },
-      { path: "signUp", element: <Signup />},
+      { path: "signUp", element: <SignUp />},
       { path: "projects", element: <ProjectList /> },
       { path: "projectDetails/:id", element: <ProjectDetails />},
+      { path: "customerDashboard", element: <CustomerDashboard />},
       { path: "MainDashboard", element: <MainDashboard />},
+      { path: "customerForm", element: <CustomerForm />},
+      { path: "editCustomer/:id", element: <EditCustomer /> },
+      { path: "customerList/:serviceType?", element: <CustomerList />},
+      { path: "constructions", element: <ConstructionPage /> },
+      { path: "consulting", element: <ConsultingPage /> },
+      { path: "customerDemoForm", element: <CustomerDemoForm /> }
+      
+    
+
+
+    
     ],
   },
 ]);
