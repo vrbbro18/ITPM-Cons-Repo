@@ -6,6 +6,8 @@ import signupRoutes from "./routes/signUp.js";
 import signInRoutes from "./routes/signIn.js"
 import projectRoutes from "./routes/projects.js"
 import projectDetails from "./routes/projectDetails.js"
+import Materials from "./routes/Materials/AddMaterials.js"
+import FetchMaterials from "./routes/Materials/FetchMaterials.js"
 
 const app = express();
 app.use(express.json());
@@ -16,6 +18,8 @@ app.use("/signUp", signupRoutes);
 app.use("/signin", signInRoutes);
 app.use("/projects", projectRoutes);
 app.use("/projectDetails", projectDetails);
+app.use("/add-materials", Materials)
+app.use("/fetch-materials", FetchMaterials)
 
 // Connect to MongoDB and start server
 mongoose.connect(mongoDBURL)

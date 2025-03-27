@@ -15,6 +15,9 @@ import ProjectList from "./components/pages/ProjectList.jsx";
 import ProjectDetails from "./components/pages/ProjectDetails.jsx";
 import MainDashboard from "./components/MainDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
+import MaterialForm from "./components/pages/Materials/MaterialForm.jsx";
+import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
+import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx"
 
 const router = createBrowserRouter([
   {
@@ -32,6 +35,9 @@ const router = createBrowserRouter([
       { path: "projects", element: <ProjectList /> },
       { path: "projectDetails/:id", element: <ProjectDetails />},
       { path: "MainDashboard", element: <MainDashboard />},
+      { path: "MaterialForm", element: <MaterialForm />},
+      { path: "AddMaterial", element: <AddMaterial />},
+      { path: "MaterialDashboard", element: <MaterialDashboard />},
     ],
   },
 ]);

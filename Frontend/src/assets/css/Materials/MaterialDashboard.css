@@ -1,0 +1,215 @@
+  .body{
+    color: #1a0c0c;
+  }
+  .dashboard-container{
+    display: flex !important;
+  }
+
+  .sidebar{
+    width: 250px;
+    background: linear-gradient(135deg, #0c0c0c, #2d757a);
+    padding: 20px;
+    color: white;
+    position: fixed; /* Fix sidebar to the left */
+    height: 100vh; /* Full height */
+    overflow-y: auto;
+  }
+  
+  /* Dashboard Header */
+  .dashboard-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #0c0c0c, #2d757a);
+    padding: 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  .dashboard-header h1 {
+    align-items: center;
+    color: #ddd;
+  }
+  
+  /* Stats Overview */
+  .dashboard-stats {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .stat-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1;
+  }
+  
+  h3 {
+    margin: 0;
+    margin-top: 50px;
+    font-size: 30px;
+    color: #555;
+    text-align: center;
+    margin-left: 120px;
+    border: #0c0c0c;
+    border-radius   : 1px;
+    
+  }
+  
+  .stat-card p {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0 0;
+  }
+  
+  /* Materials Table */
+  .materials-table {
+    margin-top: 20px;
+  }
+  
+  .materials-table h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    
+  }
+  
+  .materials-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .materials-table th, .materials-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .materials-table th {
+    background: #414750;
+    color: white;
+  }
+  
+  .materials-table tr:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+
+  /* Add Materials CSS */
+.add-material-container {
+    max-width: 500px;
+    margin: auto auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    margin-left: 490px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .add-material-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+  
+  /* Message */
+  .add-material-container p {
+    text-align: center;
+    font-size: 14px;
+    color: green;
+    margin-bottom: 10px;
+  }
+  
+  /* Form */
+  .add-material-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Input Fields */
+  .add-material-form label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    
+    
+  }
+  
+  .add-material-form input {
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border 0.3s ease;
+  }
+  
+  .add-material-form input:focus {
+    border-color: #414750;
+    outline: none;
+  }
+  
+  /* Submit Button */
+  .add-material-form button {
+    padding: 10px;
+    background: #414750;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .add-material-form button:hover {
+    background: #2f323b;
+  }
+  
+/* Materials Table */
+
+.materialTableContainer{
+    display: flex;
+    justify-content: center;
+    margin-left: 5rem;
+    margin-left: 230px;
+}
+
+.materials-table {
+    width: 80%;
+    gap:15px;
+    margin: 20px auto;
+    margin-top: 30px;
+    border-collapse: collapse;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.materials-table th, .materials-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.materials-table th {
+    background: #414750;
+    color: white;
+}
+
+.materials-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.no-data {
+    text-align: center;
+    padding: 15px;
+    color: #888;
+}

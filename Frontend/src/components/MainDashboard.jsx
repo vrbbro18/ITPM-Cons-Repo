@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
+import { Outlet } from "react-router-dom";
 import "react-calendar/dist/Calendar.css";
 import "../assets/css/AdminDashboard.css";
 
@@ -14,7 +15,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* sidebar */}
+      
       <aside className="sidebar">
         <h2 className="sidebar-title">Build Ease</h2>
         <nav>
@@ -22,12 +23,12 @@ const AdminDashboard = () => {
             <li><a href="/construction-company-react-app/MainDashboard"><i className="fas fa-home"></i> Home</a></li>
             <li><a href="/admin/dashboard"><i className="fas fa-user"></i> Customer Requests</a></li>
             <li><a href="/construction-company-react-app/projects"><i className="fas fa-tasks"></i> Projects</a></li>
-            <li><a href="/admin/inquiries"><i className="fas fa-envelope"></i> Stocks & Materials</a></li>
+            <li><a href="/construction-company-react-app/MaterialDashboard"><i className="fas fa-envelope"></i> Stocks & Materials</a></li>
             <li><a href="/admin/settings"><i className="fas fa-shopping-cart"></i> Billing & Payments</a></li>
           </ul>
         </nav>
 
-        {/* Logout Button */}
+       
         <div className="logout-button">
           <i className="fas fa-sign-out-alt"></i> 
         </div>
@@ -47,7 +48,6 @@ const AdminDashboard = () => {
               <Calendar
                 onChange={setDate}
                 value={date}
-
               />
             </div>
           </div>
