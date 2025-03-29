@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <aside className="sidebar">
-      <h2 className="sidebar-title">Admin Panel</h2>
+      <h2 className="sidebar-title">Customer Requeste</h2>
       <nav>
         <ul className="sidebar-menu">
           <li>
