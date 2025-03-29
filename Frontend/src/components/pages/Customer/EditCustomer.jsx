@@ -318,7 +318,7 @@ const EditCustomer = () => {
             >
               <option value="">Select a status</option>
               <option value="pending">Pending</option>
-              <option value="in-progress">In Progress</option>
+              <option value="in-progress">In-Progress</option>
               <option value="completed">Completed</option>
             </select>
             {errors.status && <span className="error-message">{errors.status}</span>}

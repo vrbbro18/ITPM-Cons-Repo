@@ -60,20 +60,18 @@ const CustomerList = ({ serviceType }) => {
       { header: 'Budget', accessor: 'budget' }
     ];
 
-    const pdf = generateCustomerPDF(customers, columns, 'Customer List Report');
-    const pdfBlob = pdf.output('blob');
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    window.open(pdfUrl, '_blank');
+    const doc = generateCustomerPDF(customers, columns, 'Customer List Report');
+    doc.save('customer_list_report.pdf');
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container2">
       <SideBar />
-      <div className="main-content">
-        <div className="header">
+      <div className="main-content2">
+        <div className="header2">
           <h2>{serviceType ? `${serviceType} Projects` : 'All Projects'}</h2>
-          <p>Total Projects: {customers.length}</p>
-          <div className="search-bar-container">
+          <p><b>Total Projects: {customers.length}</b></p>
+          <div className="search-bar-container2">
             <input
               type="text"
               className="search-bar"
@@ -131,7 +129,7 @@ const CustomerList = ({ serviceType }) => {
                     <th>Project Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Service Type</th>
+                  
                     <th>Budget</th>
                     <th>Start Date</th>
                     <th>End Date</th>
@@ -147,7 +145,7 @@ const CustomerList = ({ serviceType }) => {
                       <td>{customer.projectName || 'N/A'}</td>
                       <td>{customer.email}</td>
                       <td>{customer.phone}</td>
-                      <td>{customer.serviceType}</td>
+                      
                       <td>{customer.budget || 'N/A'}</td>
                       <td>{customer.startDate ? new Date(customer.startDate).toLocaleDateString() : 'N/A'}</td>
                       <td>{customer.endDate ? new Date(customer.endDate).toLocaleDateString() : 'N/A'}</td>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Sidebar from "../Common/Sidebar"; // Adjust path based on your structure
 import './Styles/CustomerForm.css'; // Adjust path based on your structure
+import photo1 from '../../../assets/img/photo1.jpg'; // Adjust path to your image file
 
 const CustomerForm = () => {
   const [formData, setFormData] = useState({
@@ -125,96 +126,129 @@ const CustomerForm = () => {
   return (
     <div className="customer-form-container">
       <Sidebar />
-      <div className="form-container">
-        <h2>New Project Request</h2>
-        <form onSubmit={handleSubmit} className="project-form">
-          <div className="form-group">
-            <label htmlFor="name">Full Name:</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-              required
-              className="form-input"
-              placeholder="Enter your full name"
-            />
-            {errors.name && <span className="error-message">{errors.name}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="form-input"
-              placeholder="Enter your email"
-            />
-            {errors.email && <span className="error-message">{errors.email}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="phone">Phone Number:</label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              onKeyPress={handleKeyPress}
-              required
-              maxLength="10"
-              className="form-input"
-              placeholder="Enter your phone number"
-            />
-            {errors.phone && <span className="error-message">{errors.phone}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="serviceType">Service Type:</label>
-            <select
-              id="serviceType"
-              name="serviceType"
-              value={formData.serviceType}
-              onChange={handleChange}
-              required
-              className="form-select"
-            >
-              <option value="">Select a service type</option>
-              <option value="construction">Construction</option>
-              <option value="consulting">Consulting</option>
-            </select>
-            {errors.serviceType && <span className="error-message">{errors.serviceType}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="message">Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              className="form-textarea"
-              placeholder="Describe your project requirements"
-              rows="4"
-            />
-            {errors.message && <span className="error-message">{errors.message}</span>}
-          </div>
-
-          <button type="submit" className="submit-btn">
-            Submit Request
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-};
-
+     <div className="content-wrapper">
+             <div className="container">
+               <div className="row align-items-center">
+                 {/* Left Column: Image */}
+                 <div className="col-12 col-md-6 mb-4 mb-md-0">
+                   <img
+                     src={photo1}
+                     alt="Project Visual"
+                     className="img-fluid form-image"
+                   />
+                 </div>
+     
+                 {/* Right Column: Form */}
+                 <div className="col-12 col-md-6">
+                   <div className="form-container">
+                     <h2 className="text-center mb-4">New Project Request</h2>
+                     <form onSubmit={handleSubmit} className="project-form bg-light p-4">
+                       <div className="row g-3">
+                         {/* Name */}
+                         <div className="col-12 col-sm-6">
+                           <label htmlFor="name" className="form-label">Full Name:</label>
+                           <input
+                             type="text"
+                             id="name"
+                             name="name"
+                             value={formData.name}
+                             onChange={handleChange}
+                             onKeyPress={handleKeyPress}
+                             required
+                             className="form-control border-0"
+                             placeholder="Enter your full name"
+                             style={{ height: "45px" }} // Reduced height
+                           />
+                           {errors.name && <span className="error-message">{errors.name}</span>}
+                         </div>
+     
+                         {/* Email */}
+                         <div className="col-12 col-sm-6">
+                           <label htmlFor="email" className="form-label">Email:</label>
+                           <input
+                             type="email"
+                             id="email"
+                             name="email"
+                             value={formData.email}
+                             onChange={handleChange}
+                             required
+                             className="form-control border-0"
+                             placeholder="Enter your email"
+                             style={{ height: "45px" }} // Reduced height
+                           />
+                           {errors.email && <span className="error-message">{errors.email}</span>}
+                         </div>
+     
+                         {/* Phone */}
+                         <div className="col-12 col-sm-6">
+                           <label htmlFor="phone" className="form-label">Phone Number:</label>
+                           <input
+                             type="tel"
+                             id="phone"
+                             name="phone"
+                             value={formData.phone}
+                             onChange={handleChange}
+                             onKeyPress={handleKeyPress}
+                             required
+                             maxLength="10"
+                             className="form-control border-0"
+                             placeholder="Enter your phone number"
+                             style={{ height: "45px" }} // Reduced height
+                           />
+                           {errors.phone && <span className="error-message">{errors.phone}</span>}
+                         </div>
+     
+                         {/* Service Type */}
+                         <div className="col-12 col-sm-6">
+                           <label htmlFor="serviceType" className="form-label">Service Type:</label>
+                           <select
+                             id="serviceType"
+                             name="serviceType"
+                             value={formData.serviceType}
+                             onChange={handleChange}
+                             required
+                             className="form-control border-0"
+                             style={{ height: "45px" }} // Reduced height
+                           >
+                             <option value="">Select a service type</option>
+                             <option value="construction">Construction</option>
+                             <option value="consulting">Consulting</option>
+                           </select>
+                           {errors.serviceType && <span className="error-message">{errors.serviceType}</span>}
+                         </div>
+     
+                         {/* Message */}
+                         <div className="col-12">
+                           <label htmlFor="message" className="form-label">Message:</label>
+                           <textarea
+                             id="message"
+                             name="message"
+                             value={formData.message}
+                             onChange={handleChange}
+                             required
+                             className="form-control border-0"
+                             placeholder="Describe your project requirements"
+                             rows="3" // Reduced rows
+                             style={{ height: "100px" }} // Reduced height
+                           />
+                           {errors.message && <span className="error-message">{errors.message}</span>}
+                         </div>
+     
+                         {/* Submit Button */}
+                         <div className="col-12">
+                           <button type="submit" className="btn btn-primary w-100 py-2">
+                             Submit Request
+                           </button>
+                         </div>
+                       </div>
+                     </form>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+        
+         </div>
+       );
+     };
 export default CustomerForm;

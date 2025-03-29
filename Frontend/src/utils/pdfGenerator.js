@@ -1,65 +1,50 @@
+// utils/pdfGenerator.js
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
-export const generateCustomerPDF = (customers, columns, title) => {
-  try {
-    const doc = new jsPDF();
-    const date = new Date().toLocaleString();
-    
-    // Add header
-    doc.setFontSize(18);
-    doc.setTextColor(40);
-    doc.text(title, 14, 22);
-    
-    // Add subtitle
-    doc.setFontSize(12);
-    doc.setTextColor(100);
-    doc.text(`Generated on: ${date}`, 14, 32);
+export const generateCustomerPDF = (data, columns, title) => {
+  const doc = new jsPDF();
 
-    // Prepare table data
-    const tableData = customers.map(customer => 
-      columns.map(col => {
-        const value = customer[col.accessor];
-        
-        if (col.accessor === 'createdAt' || col.accessor === 'startDate' || col.accessor === 'endDate') {
-          return value ? new Date(value).toLocaleDateString() : 'N/A';
-        }
-        
-        return value || 'N/A';
-      })
-    );
+  // Add title
+  doc.setFontSize(18);
+  doc.text(title, 14, 20);
 
-    // Generate table
-    doc.autoTable({
-      head: [columns.map(col => col.header)],
-      body: tableData,
-      startY: 40,
-      theme: 'grid',
-      styles: { 
-        fontSize: 10,
-        cellPadding: 2,
-        overflow: 'linebreak'
-      },
-      headStyles: {
-        fillColor: [51, 102, 153], // Dark blue
-        textColor: 255,
-        fontStyle: 'bold'
-      },
-      didDrawPage: (data) => {
-        // Add footer
-        doc.setFontSize(10);
-        doc.setTextColor(100);
-        doc.text(
-          `Page ${data.pageCount}`,
-          doc.internal.pageSize.width - 30,
-          doc.internal.pageSize.height - 10
-        );
+  // Add generation date
+  doc.setFontSize(10);
+  doc.text(`Generated on: ${new Date().toLocaleString()}`, 14, 30);
+
+  // Prepare table data
+  const tableData = data.map((item) =>
+    columns.map((column) => {
+      if (
+        column.accessor === 'createdAt' ||
+        column.accessor === 'startDate' ||
+        column.accessor === 'endDate'
+      ) {
+        return item[column.accessor]
+          ? new Date(item[column.accessor]).toLocaleDateString()
+          : 'N/A';
       }
-    });
+      return item[column.accessor] || 'N/A';
+    })
+  );
 
-    return doc;
-  } catch (error) {
-    console.error('PDF generation error:', error);
-    throw new Error('Failed to generate PDF');
-  }
+  // Generate table
+  doc.autoTable({
+    startY: 40,
+    head: [columns.map((col) => col.header)],
+    body: tableData,
+    theme: 'striped',
+    styles: {
+      fontSize: 10,
+      cellPadding: 2,
+    },
+    headStyles: {
+      fillColor: [66, 139, 202],
+      textColor: 255,
+    },
+    margin: { top: 40 },
+  });
+
+  return doc;
 };
