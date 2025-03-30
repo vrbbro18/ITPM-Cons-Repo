@@ -1,5 +1,5 @@
 import express from "express"
-import project from "../models/project.js"
+import project from "../models/customer.js"
 
 const router = express.Router()
 

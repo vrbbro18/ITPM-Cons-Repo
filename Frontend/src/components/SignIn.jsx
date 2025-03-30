@@ -60,9 +60,9 @@ const Login = () => {
                        Signup
                     </button> */}
                     
-                    <button type="button" className="forgot-password-button" onClick={() => navigate("/construction-company-react-app/forget-password")}>
+                    {/* <button type="button" className="forgot-password-button" onClick={() => navigate("/construction-company-react-app/forget-password")}>
                         Forget Password
-                    </button>
+                    </button> */}
                 </form>
             </div>
         </div>

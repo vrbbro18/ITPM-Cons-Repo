@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./layouts/Home.jsx";
 import AboutTab from "./layouts/AboutTab.jsx";
 import ServicesTab from "./layouts/ServicesTab.jsx";
@@ -11,8 +11,8 @@ import mySiteStore from "./store/index.js";
 import Blogs from "./components/Blogs.jsx";
 import BlogDetails from "./components/BlogDetails.jsx";
 import SignIn from "./components/SignIn.jsx";
-import ProjectList from "./components/pages/ProjectList.jsx";
-import ProjectDetails from "./components/pages/ProjectDetails.jsx";
+import ProjectList from "./components/pages/project/ProjectList.jsx";
+import ProjectDetails from "./components/pages/project/ProjectDetails.jsx";
 import MainDashboard from "./components/MainDashboard.jsx";
 import CustomerDashboard from "./components/pages/Customer/customerDashboard.jsx";
 import CustomerList from "./components/pages/Customer/customerList.jsx";
@@ -23,44 +23,43 @@ import ConsultingPage from "./components/pages/Customer/consultingPage.jsx";
 import CustomerDemoForm from "./components/pages/Customer/customerDemoForm.jsx";
 import MaterialForm from "./components/pages/Materials/MaterialForm.jsx";
 import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
-import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx"
+import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
-
-const router = createBrowserRouter([
-  {
-    path: "/construction-company-react-app",
-    element: <App />,
-    children: [
-      { path: "", element: <Home /> }, // Default route
-      { path: "about", element: <AboutTab /> },
-      { path: "services", element: <ServicesTab /> },
-      { path: "blogs", element: <Blogs blogsNumber={10} /> },
-      { path: "blogdetails/:id", element: <BlogDetails /> },
-      { path: "contact", element: <ContactTab /> },
-      { path: "signin", element: <SignIn /> },
-      { path: "signUp", element: <SignUp />},
-      { path: "projects", element: <ProjectList /> },
-      { path: "projectDetails/:id", element: <ProjectDetails />},
-      { path: "customerDashboard", element: <CustomerDashboard />},
-      { path: "MainDashboard", element: <MainDashboard />},
-      { path: "customerForm", element: <CustomerForm />},
-      { path: "editCustomer/:id", element: <EditCustomer /> },
-      { path: "customerList/:serviceType?", element: <CustomerList />},
-      { path: "constructions", element: <ConstructionPage /> },
-      { path: "consulting", element: <ConsultingPage /> },
-      { path: "customerDemoForm", element: <CustomerDemoForm /> },
-      { path: "MaterialForm", element: <MaterialForm />},
-      { path: "AddMaterial", element: <AddMaterial />},
-      { path: "MaterialDashboard", element: <MaterialDashboard />},
-      
-    ],
-  },
-]);
+import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={mySiteStore}>
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Routes>
+          {/* Main Route */}
+          <Route path="/construction-company-react-app" element={<App />}>
+            {/* Nested Routes */}
+            <Route index element={<Home />} />
+            <Route path="about" element={<AboutTab />} />
+            <Route path="services" element={<ServicesTab />} />
+            <Route path="blogs" element={<Blogs blogsNumber={10} />} />
+            <Route path="blogdetails/:id" element={<BlogDetails />} />
+            <Route path="contact" element={<ContactTab />} />
+            <Route path="signin" element={<SignIn />} />
+            <Route path="signUp" element={<Signup />} />
+            <Route path="projects" element={<ProjectList />} />
+            <Route path="projectDetails/:id" element={<ProjectDetails />} />
+            <Route path="customerDashboard" element={<CustomerDashboard />} />
+            <Route path="MainDashboard" element={<MainDashboard />} />
+            <Route path="customerForm" element={<CustomerForm />} />
+            <Route path="editCustomer/:id" element={<EditCustomer />} />
+            <Route path="customerList/:serviceType?" element={<CustomerList />} />
+            <Route path="constructions" element={<ConstructionPage />} />
+            <Route path="consulting" element={<ConsultingPage />} />
+            <Route path="customerDemoForm" element={<CustomerDemoForm />} />
+            <Route path="MaterialForm" element={<MaterialForm />} />
+            <Route path="AddMaterial" element={<AddMaterial />} />
+            <Route path="MaterialDashboard" element={<MaterialDashboard />} />
+            <Route path="ProjectDashboard" element={<ProjectDashboard />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>
 );

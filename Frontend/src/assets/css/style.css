@@ -15,7 +15,7 @@
   --secondary: #fdbe33;
   --light: #f4f6f8;
   --dark: #040f28;
-  --custom1:#25b9a1;
+  --custom1: #25b9a1;
 }
 
 .pt-6 {
@@ -97,80 +97,60 @@
 }
 
 .bg-dark-radial {
-  background-image: -webkit-repeating-radial-gradient(
-    center center,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -moz-repeating-radial-gradient(
-    center center,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -ms-repeating-radial-gradient(
-    center center,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -o-repeating-radial-gradient(
-    center center,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: repeating-radial-gradient(
-    center center,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.3) 1px,
-    transparent 1px,
-    transparent 100%
-  );
+  background-image: -webkit-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -o-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
   background-size: 3px 3px;
 }
 
 .bg-light-radial {
-  background-image: -webkit-repeating-radial-gradient(
-    center center,
-    rgba(256, 256, 256, 0.2),
-    rgba(256, 256, 256, 0.2) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -moz-repeating-radial-gradient(
-    center center,
-    rgba(256, 256, 256, 0.2),
-    rgba(256, 256, 256, 0.2) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -ms-repeating-radial-gradient(
-    center center,
-    rgba(256, 256, 256, 0.2),
-    rgba(256, 256, 256, 0.2) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: -o-repeating-radial-gradient(
-    center center,
-    rgba(256, 256, 256, 0.2),
-    rgba(256, 256, 256, 0.2) 1px,
-    transparent 1px,
-    transparent 100%
-  );
-  background-image: repeating-radial-gradient(
-    center center,
-    rgba(256, 256, 256, 0.2),
-    rgba(256, 256, 256, 0.2) 1px,
-    transparent 1px,
-    transparent 100%
-  );
+  background-image: -webkit-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -o-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
   background-size: 3px 3px;
 }
 
@@ -314,6 +294,7 @@
 }
 
 @media (min-width: 992px) {
+
   .testimonial,
   .contact-form {
     margin-left: -90px;
@@ -353,8 +334,10 @@
 
 /* Construction Theme - Dark Blue & Yellow */
 :root {
-  --primary-color: #1e3a56; /* Dark Blue */
-  --secondary-color: #ffcc00; /* Construction Yellow */
+  --primary-color: #1e3a56;
+  /* Dark Blue */
+  --secondary-color: #ffcc00;
+  /* Construction Yellow */
   --text-color: #ffffff;
   --bg-color: #f8f9fa;
 }
@@ -465,24 +448,6 @@
   }
 }
 
-
-/* General Container Styling */
-.container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Heading */
-h2 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 20px;
-}
-
 /* Table Styling */
 .project-table {
   width: 100%;
@@ -492,36 +457,61 @@ h2 {
   overflow: hidden;
 }
 
-/* Table Header */
-.project-table thead {
-  background: #007bff;
-  color: #fff;
+.project-tables {
+  width: 80%;
+  /* Reduce width */
+  max-width: 1000px;
+  /* Set a max width */
+  margin: auto;
+  margin-left: 250px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.project-table th {
+/* Table Header */
+.project-tables thead {
+  background: linear-gradient(rgba(14, 15, 15, 0.8), rgba(15, 49, 83, 0.8));
+  color: #fff;
+  border: 1px solid #b4afaf;
+  padding: 8px;
+  text-align: center;
+}
+
+.project-tables th {
   padding: 12px;
   text-align: left;
   font-size: 16px;
 }
 
 /* Table Body */
-.project-table tbody tr {
+.project-tables tbody tr {
   border-bottom: 1px solid #ddd;
 }
 
-.project-table td {
+.project-tables td {
   padding: 10px;
-  color: #555;
+  color: #0c0a0a;
 }
 
 /* Hover Effect */
-.project-table tbody tr:hover {
-  background-color: #f1f1f1;
+.project-tables tbody tr:hover {
+  background: linear-gradient(rgba(14, 15, 15, 0.8), rgba(15, 49, 83, 0.8));
 }
 
 /* View Button */
-button {
+.view {
   background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s;
+  gap: 10px;
+}
+
+.delete {
+  background-color: #ff0000;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -532,15 +522,15 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #3ed49b;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
   .project-table th,
   .project-table td {
-      font-size: 14px;
-      padding: 8px;
+    font-size: 14px;
+    padding: 8px;
   }
 }
-

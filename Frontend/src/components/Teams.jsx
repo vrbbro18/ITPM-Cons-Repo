@@ -6,9 +6,9 @@ export default function Teams() {
 
   return (
     <div className="container-fluid py-6 px-5">
-      <div className="text-center mx-auto mb-5" style={{ maxWidth: "600px" }}>
+      <div className="text-center mx-auto mb-5" style={{ maxWidth: "600px" , marginLeft: "200px"}}>
         <h1 className="display-5 text-uppercase mb-4">
-          We Are <span className="text-primary">Professional & Expert</span>
+          We Are <span className="text-dark" style={{ marginLeft: "200px"}}>Professional & Expert</span>
           Workers
         </h1>
       </div>

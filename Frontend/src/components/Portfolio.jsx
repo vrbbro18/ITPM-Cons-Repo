@@ -9,10 +9,9 @@ export default function Portfolio() {
 
   return (
     <div className="container-fluid bg-light py-6 px-5">
-      <div className="text-center mx-auto mb-5" style={{ maxWidth: "600px" }}>
-        <h1 className="display-5 text-uppercase mb-4">
-          Some Of Our <span className="text-primary">Popular</span> Dream
-          Projects
+      <div className="text-center mx-auto mb-1" style={{ maxWidth: "600px" }}>
+        <h1 className="display-5 text-uppercase mb-1" style={{ marginLeft: "-50px"}}>
+          Some Of Our <br></br>Popular Dream Projects
         </h1>
       </div>
       <div className="row gx-5">
