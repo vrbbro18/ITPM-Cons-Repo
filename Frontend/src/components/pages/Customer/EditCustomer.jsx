@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-import './Styles/EditCustomer.css'; // Adjust path based on your structure
+import './Styles/EditCustomer.css';
 import Sidebar from "../Common/Sidebar";
 
 const EditCustomer = () => {
@@ -11,10 +11,10 @@ const EditCustomer = () => {
     name: "",
     email: "",
     phone: "",
-    serviceType: "construction",
-    status: "pending",
+    serviceType: "",
+    status: "",
     projectName: "",
-    budget: 0,
+    budget: "",
     startDate: "",
     endDate: "",
     adminNotes: "",
@@ -28,13 +28,13 @@ const EditCustomer = () => {
         const res = await axios.get(`http://localhost:5000/api/customer/${id}`);
         const data = res.data.data;
         setFormData({
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          serviceType: data.serviceType || "construction",
-          status: data.status || "pending",
+          name: data.name || "",
+          email: data.email || "",
+          phone: data.phone || "",
+          serviceType: data.serviceType || "",
+          status: data.status || "",
           projectName: data.projectName || "",
-          budget: data.budget || 0,
+          budget: data.budget ? String(data.budget) : "", // Convert to string for input
           startDate: data.startDate ? data.startDate.split('T')[0] : "",
           endDate: data.endDate ? data.endDate.split('T')[0] : "",
           adminNotes: data.adminNotes || "",
@@ -48,53 +48,63 @@ const EditCustomer = () => {
     fetchCustomer();
   }, [id]);
 
-  // Validation rules
+  // Validation rules (all fields required)
   const validateField = (name, value) => {
     let error = "";
     switch (name) {
       case "name":
-        if (!/^[A-Za-z\s]+$/.test(value)) {
-          error = "Name must contain only letters and spaces.";
-        } else if (value.trim().length === 0) {
+        if (!value.trim()) {
           error = "Name is required.";
+        } else if (!/^[A-Za-z\s]+$/.test(value)) {
+          error = "Name must contain only letters and spaces.";
         }
         break;
       case "email":
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        if (!value.trim()) {
+          error = "Email is required.";
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
           error = "Please enter a valid email address.";
         }
         break;
       case "phone":
-        if (!/^\d{10}$/.test(value)) {
+        if (!value.trim()) {
+          error = "Phone is required.";
+        } else if (!/^\d{10}$/.test(value)) {
           error = "Phone must be exactly 10 digits.";
         }
         break;
       case "serviceType":
         if (!value || value === "") {
-          error = "Please select a service type.";
+          error = "Service type is required.";
         }
         break;
       case "status":
         if (!value || value === "") {
-          error = "Please select a status.";
+          error = "Status is required.";
         }
         break;
       case "projectName":
-        if (value && !/^[A-Za-z0-9\s-]+$/.test(value)) {
+        if (!value.trim()) {
+          error = "Project name is required.";
+        } else if (!/^[A-Za-z0-9\s-]+$/.test(value)) {
           error = "Project name can only contain letters, numbers, spaces, and hyphens.";
         }
         break;
       case "budget":
-        const budgetNum = Number(value);
-        if (isNaN(budgetNum) || budgetNum < 0 || budgetNum > 100000000) {
-          error = "Budget must be a number between 0 and 100,000,000.";
+        if (!value.trim()) {
+          error = "Budget is required.";
+        } else {
+          const budgetNum = Number(value);
+          if (isNaN(budgetNum) || budgetNum <= 0 || budgetNum > 100000000) {
+            error = "Budget must be a positive number up to 100,000,000.";
+          }
         }
         break;
       case "startDate":
-        if (value) {
+        if (!value) {
+          error = "Start date is required.";
+        } else {
           const date = new Date(value);
-          const today = new Date();
-          today.setHours(0, 0, 0, 0); // Reset time for comparison
           if (isNaN(date.getTime())) {
             error = "Invalid start date.";
           } else if (formData.endDate && date > new Date(formData.endDate)) {
@@ -103,7 +113,9 @@ const EditCustomer = () => {
         }
         break;
       case "endDate":
-        if (value) {
+        if (!value) {
+          error = "End date is required.";
+        } else {
           const date = new Date(value);
           if (isNaN(date.getTime())) {
             error = "Invalid end date.";
@@ -113,12 +125,16 @@ const EditCustomer = () => {
         }
         break;
       case "adminNotes":
-        if (value && !/^[A-Za-z0-9\s.,!?'-]+$/.test(value)) {
+        if (!value.trim()) {
+          error = "Admin notes are required.";
+        } else if (!/^[A-Za-z0-9\s.,!?'-]+$/.test(value)) {
           error = "Admin notes can only contain letters, numbers, spaces, and basic punctuation.";
         }
         break;
       case "message":
-        if (value && !/^[A-Za-z0-9\s.,!?'-]+$/.test(value)) {
+        if (!value.trim()) {
+          error = "Message is required.";
+        } else if (!/^[A-Za-z0-9\s.,!?'-]+$/.test(value)) {
           error = "Message can only contain letters, numbers, spaces, and basic punctuation.";
         }
         break;
@@ -132,18 +148,10 @@ const EditCustomer = () => {
     const { name, value } = e.target;
 
     // Restrict input based on field type
-    if (name === "name" && value && !/^[A-Za-z\s]*$/.test(value)) {
-      return; // Prevent typing non-letters
-    }
-    if (name === "phone" && value && !/^\d*$/.test(value)) {
-      return; // Prevent typing non-digits
-    }
-    if (name === "projectName" && value && !/^[A-Za-z0-9\s-]*$/.test(value)) {
-      return; // Prevent invalid characters
-    }
-    if (name === "budget" && value && !/^\d*$/.test(value)) {
-      return; // Prevent non-digits
-    }
+    if (name === "name" && value && !/^[A-Za-z\s]*$/.test(value)) return;
+    if (name === "phone" && value && !/^\d*$/.test(value)) return;
+    if (name === "projectName" && value && !/^[A-Za-z0-9\s-]*$/.test(value)) return;
+    if (name === "budget" && value && !/^\d*$/.test(value)) return;
 
     setFormData({
       ...formData,
@@ -160,18 +168,10 @@ const EditCustomer = () => {
 
   const handleKeyPress = (e) => {
     const { name } = e.target;
-    if (name === "name" && !/[A-Za-z\s]/.test(e.key)) {
-      e.preventDefault(); // Block non-letter keys
-    }
-    if (name === "phone" && !/[0-9]/.test(e.key)) {
-      e.preventDefault(); // Block non-digit keys
-    }
-    if (name === "projectName" && !/[A-Za-z0-9\s-]/.test(e.key)) {
-      e.preventDefault(); // Block invalid characters
-    }
-    if (name === "budget" && !/[0-9]/.test(e.key)) {
-      e.preventDefault(); // Block non-digit keys
-    }
+    if (name === "name" && !/[A-Za-z\s]/.test(e.key)) e.preventDefault();
+    if (name === "phone" && !/[0-9]/.test(e.key)) e.preventDefault();
+    if (name === "projectName" && !/[A-Za-z0-9\s-]/.test(e.key)) e.preventDefault();
+    if (name === "budget" && !/[0-9]/.test(e.key)) e.preventDefault();
   };
 
   const handleSubmit = async (e) => {
@@ -186,8 +186,8 @@ const EditCustomer = () => {
 
     setErrors(newErrors);
 
-    // If there are errors, prevent submission
     if (Object.keys(newErrors).length > 0) {
+      alert("Please correct the errors before submitting.");
       return;
     }
 
@@ -207,7 +207,7 @@ const EditCustomer = () => {
         <h2>Edit Customer Details</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Name:</label>
+            <label>Name: <span className="required">*</span></label>
             <input
               type="text"
               name="name"
@@ -219,7 +219,7 @@ const EditCustomer = () => {
             {errors.name && <span className="error-message">{errors.name}</span>}
           </div>
           <div className="form-group">
-            <label>Email:</label>
+            <label>Email: <span className="required">*</span></label>
             <input
               type="email"
               name="email"
@@ -230,7 +230,7 @@ const EditCustomer = () => {
             {errors.email && <span className="error-message">{errors.email}</span>}
           </div>
           <div className="form-group">
-            <label>Phone:</label>
+            <label>Phone: <span className="required">*</span></label>
             <input
               type="tel"
               name="phone"
@@ -243,7 +243,7 @@ const EditCustomer = () => {
             {errors.phone && <span className="error-message">{errors.phone}</span>}
           </div>
           <div className="form-group">
-            <label>Service Type:</label>
+            <label>Service Type: <span className="required">*</span></label>
             <select
               name="serviceType"
               value={formData.serviceType}
@@ -257,59 +257,64 @@ const EditCustomer = () => {
             {errors.serviceType && <span className="error-message">{errors.serviceType}</span>}
           </div>
           <div className="form-group">
-            <label>Message:</label>
+            <label>Message: <span className="required">*</span></label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               rows="4"
+              required
             />
             {errors.message && <span className="error-message">{errors.message}</span>}
           </div>
           <div className="form-group">
-            <label>Project Name:</label>
+            <label>Project Name: <span className="required">*</span></label>
             <input
               type="text"
               name="projectName"
               value={formData.projectName}
               onChange={handleChange}
               onKeyPress={handleKeyPress}
+              required
             />
             {errors.projectName && <span className="error-message">{errors.projectName}</span>}
           </div>
           <div className="form-group">
-            <label>Budget:</label>
+            <label>Budget: <span className="required">*</span></label>
             <input
-              type="text" // Using text to control input better
+              type="text"
               name="budget"
               value={formData.budget}
               onChange={handleChange}
               onKeyPress={handleKeyPress}
+              required
             />
             {errors.budget && <span className="error-message">{errors.budget}</span>}
           </div>
           <div className="form-group">
-            <label>Start Date:</label>
+            <label>Start Date: <span className="required">*</span></label>
             <input
               type="date"
               name="startDate"
               value={formData.startDate}
               onChange={handleChange}
+              required
             />
             {errors.startDate && <span className="error-message">{errors.startDate}</span>}
           </div>
           <div className="form-group">
-            <label>End Date:</label>
+            <label>End Date: <span className="required">*</span></label>
             <input
               type="date"
               name="endDate"
               value={formData.endDate}
               onChange={handleChange}
+              required
             />
             {errors.endDate && <span className="error-message">{errors.endDate}</span>}
           </div>
           <div className="form-group">
-            <label>Status:</label>
+            <label>Status: <span className="required">*</span></label>
             <select
               name="status"
               value={formData.status}
@@ -324,12 +329,13 @@ const EditCustomer = () => {
             {errors.status && <span className="error-message">{errors.status}</span>}
           </div>
           <div className="form-group">
-            <label>Admin Notes:</label>
+            <label>Admin Notes: <span className="required">*</span></label>
             <textarea
               name="adminNotes"
               value={formData.adminNotes}
               onChange={handleChange}
               rows="4"
+              required
             />
             {errors.adminNotes && <span className="error-message">{errors.adminNotes}</span>}
           </div>
