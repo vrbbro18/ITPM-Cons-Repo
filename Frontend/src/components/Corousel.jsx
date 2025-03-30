@@ -29,11 +29,11 @@ export default function Carousel() {
             >
               <img className="w-100" src={images[active]} alt="Carousel Image" />
               <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                <div className="p-3" style={{ maxWidth: "900px" }}>
-                  <h1 className="display-2 text-uppercase text-white mb-md-4">
+                <div className="p-3" style={{ maxWidth: "700px" }}>
+                  <h1 className="display-2 text-uppercase text-white " style={{marginLeft: "80px", marginBottom: "200px"}}>
                     {active === 0 ? "Build Your Dream House With Us" : "We Are Trusted For Your Project"}
                   </h1>
-                  <a href="#" className="btn btn-primary py-md-3 px-md-5 mt-2">
+                  <a href="#" className="btn btn-primary py-md-3" style={{marginBottom: "100px"}}>
                     {active === 0 ? "Get A Quote" : "Contact Us"}
                   </a>
                 </div>

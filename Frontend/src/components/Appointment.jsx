@@ -12,9 +12,9 @@ export default function Appointment() {
     <div className="container-fluid py-6 px-5">
       <div className="row gx-5">
         <div className="col-12">
-          <div className="mb-4 text-center">
+          <div className="mb-2 text-center">
             <h1 className="display-5 text-uppercase mb-4">
-              <span className="text-dark">Our Customers</span>
+              <span className="text-dark" style={{ marginLeft: "-450px"}}>Our Customers</span>
             </h1>
           </div>
           <div className="row justify-content-center">

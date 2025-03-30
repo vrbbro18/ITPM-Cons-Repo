@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const customerSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  projectName: {type:String},
   email: { type: String, required: true },
   phone: { type: String, required: true },
   serviceType: { 
@@ -10,7 +11,7 @@ const customerSchema = new mongoose.Schema({
     enum: ['construction', 'consulting']
   },
   message: String,
-  projectName: String,
+  
   budget: Number,
   startDate: Date,
   endDate: Date,

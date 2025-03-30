@@ -79,9 +79,9 @@ const CustomerList = ({ serviceType }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button className="edit-btn" onClick={generateReport}>
+            {/* <button className="edit-btn" onClick={generateReport}>
               Generate Reports
-            </button>
+            </button> */}
           </div>
         </div>
         {loading ? (

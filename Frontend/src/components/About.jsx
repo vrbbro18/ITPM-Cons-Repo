@@ -6,8 +6,8 @@ export default function About() {
     <div className="container-fluid py-6 px-5">
       <div className="row g-5">
         <div className="col-lg-7">
-          <h1 className="display-5 text-uppercase mb-4">
-            We are <span className="text-primary">the Leader</span> in
+          <h1 className="display-5 text-uppercase mb-5" style={{ marginLeft: "-100px"}}>
+            We are <span className="text-primary" >the Leader</span> in
             Construction Industry
           </h1>
           <h4 className="text-uppercase mb-3 text-body">
