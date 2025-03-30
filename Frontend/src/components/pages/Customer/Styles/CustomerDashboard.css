@@ -1,184 +1,185 @@
+:root {
+  --primary-color: #262536dc;
+  --primary: #fd5d14;
+  --secondary: #fdbe33;
+  --light: #f4f6f8;
+  --dark: #040f28;
+  --custom1: #25b9a1;
+  --text-color: #ffffff;
+}
+
+.cdashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--light);
+  flex-direction: row;
+  background-color: #f9f3f3;
+}
+
+.cmain-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  background-image: url('/assets/img/customerdashboard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Content Wrapper - Centering the content */
+.ccontent-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ 
+  padding: 30px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  /* Removed gap since we're centering everything */
+}
+
+/* Header */
+.cheader {
+  text-align: center;
+  padding: 30px 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark) 100%);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 130px; /* Add some space below header */
+}
+
+.cheader h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/* Stats Grid */
 .stats-grid {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-  }
-  
-  .stat-card {
-    flex: 1;
-    max-width: 200px;
-    padding: 20px;
-    margin: 0 10px;
-    border-radius: 8px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    color: white;
-  }
-  
-  .stat-card h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.2em;
-  }
-  
-  .stat-card p {
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: bold;
-  }
-  
-  .stat-card.total-requests {
-    background-color: #6b7280;
-  }
-  
-  .stat-card.construction-requests {
-    background-color: #1d4ed8;
-  }
-  
-  .stat-card.consulting-requests {
-    background-color: #15803d;
-  }
-  
-  .stat-card:hover {
-    transform: scale(1.05);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .customer-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .customer-table th,
-  .customer-table td {
-    padding: 12px;
-    border: 1px solid #e5e7eb;
-    text-align: left;
-  }
-  
-  .customer-table th {
-    background-color: #f3f4f6;
-    font-weight: 600;
-    color: #374151;
-  }
-  
-  .customer-table tr:nth-child(even) {
-    background-color: #f9fafb;
-  }
-  
-  .customer-table tr:hover {
-    background-color: #e5e7eb;
-  }
-  
-  .customer-table .status-badge {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 0.9em;
-    color: white;
-  }
-  
-  .customer-table .status-badge.pending {
-    background-color: #f59e0b;
-  }
-  
-  .customer-table .status-badge.in-progress {
-    background-color: #3b82f6;
-  }
-  
-  .customer-table .status-badge.completed {
-    background-color: #10b981;
-  }
-  
-  .edit-btn {
-    padding: 6px 12px;
-    margin-right: 8px;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 0.9em;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .edit-btn:hover {
-    background-color: #2563eb;
-  }
-  
-  .delete-btn {
-    padding: 6px 12px;
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 0.9em;
-    cursor: pointer;
-  }
-  
-  .delete-btn:hover {
-    background-color: #dc2626;
-  }
-  
-  .report-section {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .report-section h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5em;
-    color: #374151;
-  }
-  
-  .report-section p {
-    margin: 0 0 15px 0;
-    color: #6b7280;
-  }
-  
-  .report-section button {
-    margin-right: 10px;
-    margin-top: 15px;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically within its own space */
+  gap: 70px;
+  flex-wrap: wrap;
+  width: 100%;
+  /* No need for padding here since it's handled by wrapper */
+}
+
+.stat-card {
+  flex: 0 0 320px;
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-card h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.6em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 800;
+}
+
+.stat-card.total-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card.construction-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card.consulting-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 30px;
+  color: var(--primary);
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.error-message {
+  text-align: center;
+  padding: 30px;
+  color: #dc3545;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .cmain-content {
+    width: calc(100% - 200px);
+    margin-left: 200px;
   }
 
-  .controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 10px;
+  .stat-card {
+    flex: 0 0 280px;
+    min-height: 180px;
   }
-  
-  .controls input {
-    width: 50%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s ease-in-out;
+
+  .stats-grid {
+    gap: 40px;
   }
-  
-  .controls input:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+
+  .cheader {
+    padding: 20px 0;
   }
-  
-  .controls button {
-    padding: 10px 15px;
-    background-color: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+}
+
+@media (max-width: 576px) {
+  .cmain-content {
+    width: 100%;
+    margin-left: 0;
   }
-  
-  .controls button:hover {
-    background-color: #2563eb;
+
+  .stat-card {
+    flex: 0 0 100%;
+    max-width: 320px;
   }
-  
+
+  .cheader h1 {
+    font-size: 2em;
+  }
+
+  .stats-grid {
+    gap: 30px;
+  }
+
+  .cheader {
+    padding: 20px 0;
+  }
+}
