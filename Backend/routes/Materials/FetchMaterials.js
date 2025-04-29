@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post('/add', async (req, res) => {
     try {
-        const { materialId,name, quantity,unit, dateOfPurchase, Remarks } = req.body;
+        const { materialId,name, quantity,unit,unitPrice, dateOfPurchase, Remarks } = req.body;
 
         const material = await materials.findById(materialId)
         if(!material)
@@ -16,7 +16,7 @@ router.post('/add', async (req, res) => {
 
         const totalPrice = quantity * material.unitPrice
 
-        const newEntry = new MaterialEntry({materialId,name,quantity,unit,totalPrice,dateOfPurchase,Remarks})
+        const newEntry = new MaterialEntry({materialId,name,quantity,unit,unitPrice,totalPrice,dateOfPurchase,Remarks})
         await newEntry.save();
 
         res.status(201).json({ message: "Material entry added", newEntry });
@@ -26,7 +26,7 @@ router.post('/add', async (req, res) => {
 
 });
 
-router.get('/', async(req,res) =>{
+router.get('/getmat', async(req,res) =>{
     try{
         const entries = await MaterialEntry.find().populate("materialId")
         res.json(entries)

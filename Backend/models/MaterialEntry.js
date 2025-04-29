@@ -5,6 +5,7 @@ const MaterialEntrySchema  = new mongoose.Schema({
     name:{type: String},
     quantity: { type: Number, required: true },
     unit: { type: String},
+    unitPrice: { type: Number, required: true },
     totalPrice: { type: Number, required: true },
     dateOfPurchase: {type:Date, default: Date.now},
     addedtime: { type: Date, default: Date.now },

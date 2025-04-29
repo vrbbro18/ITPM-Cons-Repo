@@ -9,6 +9,7 @@ import projectDetails from "./routes/projectDetails.js"
 import customerRoutes from "./routes/customer.js";
 import Materials from "./routes/Materials/AddMaterials.js"
 import FetchMaterials from "./routes/Materials/FetchMaterials.js"
+import FetchEmployees from "./routes/AddEmployees.js"
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -21,6 +22,7 @@ app.use("/projects", projectRoutes);
 app.use("/projectDetails", projectDetails);
 app.use("/add-materials", Materials);
 app.use("/fetch-materials", FetchMaterials);
+app.use("/fetch-employees", FetchEmployees);
 
 
 app.get('/api/health', (req, res) => {

@@ -53,8 +53,7 @@ const ProjectList = () => {
 
     // Filter projects based on search and status filter
     const filteredProjects = projects.filter(project => {
-        const matchesSearch = project.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                             project.projectName.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearch = project.projectName.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesStatus = filterStatus === "All" || project.status === filterStatus;
         return matchesSearch && matchesStatus;
     });
