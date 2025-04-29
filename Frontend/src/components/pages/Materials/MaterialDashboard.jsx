@@ -16,6 +16,7 @@ const MaterialDashboard = () => {
   ];
   
   // Filter materials based on search term
+  // Filter 
   const filteredMaterials = materials.filter(material => 
     material.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
