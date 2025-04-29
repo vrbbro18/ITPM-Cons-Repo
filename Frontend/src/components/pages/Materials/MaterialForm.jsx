@@ -11,6 +11,7 @@ const MaterialForm = () => {
     const [selectedMaterial, setSelectedMaterial] = useState(null);
     const [name, setName] = useState(null);
     const [unit, setUnit] = useState(null);
+    const [unitPrice, setUnitPrice] = useState(null);
     const [quantity, setQuantity] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [dateOfPurchase, setDateOfPurchase] = useState('');
@@ -38,7 +39,7 @@ const MaterialForm = () => {
     const getEntryMaterials = async () => {
         setIsLoading(true);
         try {
-            const res = await axios.get("http://localhost:5000/fetch-materials");
+            const res = await axios.get("http://localhost:5000/fetch-materials/getmat");
             setMaterialEntry(res.data);
         } catch (error) {
             console.error("Error fetching Entry Materials", error);
@@ -52,6 +53,7 @@ const MaterialForm = () => {
         setSelectedMaterial(material);
         setName(material ? material.name : "");
         setUnit(material ? material.unit : "");
+        setUnitPrice(material? material.unitPrice: "");
         setTotalPrice(material ? material.unitPrice * quantity : 0);
     };
 
@@ -85,6 +87,7 @@ const MaterialForm = () => {
                 name,
                 quantity,
                 unit,
+                unitPrice,
                 dateOfPurchase,
                 Remarks
             });

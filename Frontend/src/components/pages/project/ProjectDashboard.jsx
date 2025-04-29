@@ -66,7 +66,7 @@ const ProjectDashboard = () => {
                 <h2 className="sidebar-title">Project & Services</h2>
                 <nav>
                     <ul className="sidebar-menu">
-                        <li><a href="/construction-company-react-app/ProjectDashboard"><i className="fas fa-home"></i>Home</a></li>
+                        <li><a href="/construction-company-react-app/MainDashboard"><i className="fas fa-home"></i>Home</a></li>
                         <li><a href="/construction-company-react-app/projects"><i className="fas fa-user"></i>Construction</a></li>
                         <li><a href="/construction-company-react-app/MaterialForm"><i className="fas fa-tasks"></i> Consulting & Services</a></li>
                         <li><a href="/construction-company-react-app/MaterialForm"><i className="fas fa-envelope"></i> Reports & Analytics</a></li>
