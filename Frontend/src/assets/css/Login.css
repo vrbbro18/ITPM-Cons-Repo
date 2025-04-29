@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.login-container {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+}
+
+/* Title */
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Input Fields */
+.login-container label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Buttons */
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+/* Login Button */
+.login-container button[type="submit"] {
+    background: #007bff;
+    color: white;
+}
+
+.login-container button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Signup Button */
+.signup-button {
+    margin-top: 10px;
+    background: #28a745;
+    color: white;
+}
+
+.signup-button:hover {
+    background: #218838;
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+    .login-container {
+        width: 90%;
+    }
+}

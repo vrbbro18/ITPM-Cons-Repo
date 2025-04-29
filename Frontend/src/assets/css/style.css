@@ -1,0 +1,536 @@
+/********** Template CSS **********/
+.carousel-item {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+:root {
+  --primary: #fd5d14;
+  --secondary: #fdbe33;
+  --light: #f4f6f8;
+  --dark: #040f28;
+  --custom1: #25b9a1;
+}
+
+.pt-6 {
+  padding-top: 90px;
+}
+
+.pb-6 {
+  padding-bottom: 90px;
+}
+
+.py-6 {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.btn {
+  position: relative;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.btn::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 5px;
+  bottom: -1px;
+  left: 50%;
+  background: var(--primary);
+  transition: 0.5s;
+}
+
+.btn.btn-primary::after {
+  background: var(--dark);
+}
+
+.btn:hover::after,
+.btn.active::after {
+  width: 50%;
+  left: 25%;
+}
+
+.btn-primary {
+  color: #ffffff;
+}
+
+.btn-square {
+  width: 36px;
+  height: 36px;
+}
+
+.btn-sm-square {
+  width: 28px;
+  height: 28px;
+}
+
+.btn-lg-square {
+  width: 46px;
+  height: 46px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+  padding-left: 0;
+  padding-right: 0;
+  text-align: center;
+}
+
+.back-to-top {
+  position: fixed;
+  display: none;
+  left: 50%;
+  bottom: 0;
+  margin-left: -22px;
+  border-radius: 0;
+  z-index: 99;
+}
+
+.bg-dark-radial {
+  background-image: -webkit-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -o-repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: repeating-radial-gradient(center center,
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-size: 3px 3px;
+}
+
+.bg-light-radial {
+  background-image: -webkit-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -moz-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -ms-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: -o-repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-image: repeating-radial-gradient(center center,
+      rgba(256, 256, 256, 0.2),
+      rgba(256, 256, 256, 0.2) 1px,
+      transparent 1px,
+      transparent 100%);
+  background-size: 3px 3px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  position: relative;
+  padding: 35px 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: var(--light);
+  outline: none;
+  transition: 0.5s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+  color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+  .navbar-dark .navbar-nav .nav-link {
+    margin-left: 0;
+    padding: 10px 0;
+  }
+}
+
+.carousel-caption {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(4, 15, 40, 0.7);
+  z-index: 1;
+}
+
+@media (max-width: 576px) {
+  .carousel-caption h4 {
+    font-size: 18px;
+    font-weight: 500 !important;
+  }
+
+  .carousel-caption h1 {
+    font-size: 30px;
+    font-weight: 600 !important;
+  }
+}
+
+.page-header {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(rgba(4, 15, 40, 0.7), rgba(4, 15, 40, 0.7)),
+    url(../img/carousel-1.jpg) center center no-repeat;
+  background-size: cover;
+}
+
+.service-item .service-icon {
+  margin-top: -50px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+}
+
+.service-item .service-icon i {
+  transition: 0.2s;
+}
+
+.service-item:hover .service-icon i {
+  font-size: 60px;
+}
+
+.portfolio-item {
+  margin-bottom: 60px;
+}
+
+.portfolio-title {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 120px;
+  padding: 0 30px;
+  right: 30px;
+  left: 30px;
+  bottom: -60px;
+  background: #ffffff;
+  z-index: 3;
+}
+
+.portfolio-btn {
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -60px;
+  font-size: 120px;
+  line-height: 0;
+  transition: 0.1s;
+  transition-delay: 0.3s;
+  z-index: 2;
+  opacity: 0;
+}
+
+.portfolio-item:hover .portfolio-btn {
+  opacity: 1;
+}
+
+.portfolio-box::before,
+.portfolio-box::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  transition: 0.5s;
+  z-index: 1;
+  background: rgba(4, 15, 40, 0.7);
+}
+
+.portfolio-box::before {
+  left: 0;
+}
+
+.portfolio-box::after {
+  right: 0;
+}
+
+.portfolio-item:hover .portfolio-box::before {
+  left: 0;
+  width: 50%;
+}
+
+.portfolio-item:hover .portfolio-box::after {
+  right: 0;
+  width: 50%;
+}
+
+@media (min-width: 992px) {
+
+  .testimonial,
+  .contact-form {
+    margin-left: -90px;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer::after {
+    position: absolute;
+    content: "";
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    background: var(--primary);
+  }
+}
+
+.footer-shape::before {
+  position: absolute;
+  content: "";
+  width: 80px;
+  height: 100%;
+  top: 0;
+  left: -40px;
+  background: var(--primary);
+  transform: skew(40deg);
+}
+
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/* Construction Theme - Dark Blue & Yellow */
+:root {
+  --primary-color: #1e3a56;
+  /* Dark Blue */
+  --secondary-color: #ffcc00;
+  /* Construction Yellow */
+  --text-color: #ffffff;
+  --bg-color: #f8f9fa;
+}
+
+/* Fullscreen Background */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(rgba(14, 15, 15, 0.8), rgba(15, 49, 83, 0.8)),
+    url("https://static.vecteezy.com/system/resources/thumbnails/028/642/325/small_2x/professional-engineer-in-protective-helmet-and-blueprints-paper-at-house-building-construction-site-photo.jpg") center center/cover no-repeat;
+  padding: 20px;
+}
+
+/* Login Box */
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  background: #ffffff;
+  color: var(--primary-color);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-top: 5px solid var(--secondary-color);
+}
+
+/* Title */
+.login-box h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+/* Form Group */
+.form-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Input Fields */
+.login-box input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--primary-color);
+  border-radius: 6px;
+  font-size: 16px;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0px 0px 8px rgba(255, 204, 0, 0.6);
+}
+
+/* Login Button */
+.btn {
+  width: 100%;
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--secondary-color);
+  color: #000;
+}
+
+/* Signup Button */
+.signup-button {
+  width: 100%;
+  background: #6c757d;
+  color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.signup-button:hover {
+  background: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 576px) {
+  .login-box {
+    padding: 25px;
+  }
+}
+
+/* Table Styling */
+.project-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.project-tables {
+  width: 80%;
+  /* Reduce width */
+  max-width: 1000px;
+  /* Set a max width */
+  margin: auto;
+  margin-left: 250px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header */
+.project-tables thead {
+  background: linear-gradient(rgba(14, 15, 15, 0.8), rgba(15, 49, 83, 0.8));
+  color: #fff;
+  border: 1px solid #b4afaf;
+  padding: 8px;
+  text-align: center;
+}
+
+.project-tables th {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+/* Table Body */
+.project-tables tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.project-tables td {
+  padding: 10px;
+  color: #0c0a0a;
+}
+
+/* Hover Effect */
+.project-tables tbody tr:hover {
+  background: linear-gradient(rgba(14, 15, 15, 0.8), rgba(15, 49, 83, 0.8));
+}
+
+/* View Button */
+.view {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s;
+  gap: 10px;
+}
+
+.delete {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #3ed49b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .project-table th,
+  .project-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

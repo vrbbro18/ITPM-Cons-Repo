@@ -1,0 +1,185 @@
+:root {
+  --primary-color: #262536dc;
+  --primary: #fd5d14;
+  --secondary: #fdbe33;
+  --light: #f4f6f8;
+  --dark: #040f28;
+  --custom1: #25b9a1;
+  --text-color: #ffffff;
+}
+
+.cdashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--light);
+  flex-direction: row;
+  background-color: #f9f3f3;
+}
+
+.cmain-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  background-image: url('/assets/img/customerdashboard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+/* Content Wrapper - Centering the content */
+.ccontent-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ 
+  padding: 30px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  /* Removed gap since we're centering everything */
+}
+
+/* Header */
+.cheader {
+  text-align: center;
+  padding: 30px 0;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--dark) 100%);
+  color: var(--text-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  width: 100%;
+  margin-bottom: 130px; /* Add some space below header */
+}
+
+.cheader h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically within its own space */
+  gap: 70px;
+  flex-wrap: wrap;
+  width: 100%;
+  /* No need for padding here since it's handled by wrapper */
+}
+
+.stat-card {
+  flex: 0 0 320px;
+  min-height: 200px;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  background: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-card h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.6em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 2.2em;
+  font-weight: 800;
+}
+
+.stat-card.total-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card.construction-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card.consulting-requests {
+  background: linear-gradient(135deg, var(--light) 0%, var(--primary-color) 100%);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Loading and Error States */
+.loading {
+  text-align: center;
+  padding: 30px;
+  color: var(--primary);
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+.error-message {
+  text-align: center;
+  padding: 30px;
+  color: #dc3545;
+  font-size: 1.4em;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 991.98px) {
+  .cmain-content {
+    width: calc(100% - 200px);
+    margin-left: 200px;
+  }
+
+  .stat-card {
+    flex: 0 0 280px;
+    min-height: 180px;
+  }
+
+  .stats-grid {
+    gap: 40px;
+  }
+
+  .cheader {
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .cmain-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .stat-card {
+    flex: 0 0 100%;
+    max-width: 320px;
+  }
+
+  .cheader h1 {
+    font-size: 2em;
+  }
+
+  .stats-grid {
+    gap: 30px;
+  }
+
+  .cheader {
+    padding: 20px 0;
+  }
+}
