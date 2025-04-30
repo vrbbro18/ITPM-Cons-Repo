@@ -39,9 +39,9 @@ const MaterialDashboard = () => {
           </ul>
         </nav>
 
-        {/* <div className="logout-button">
+        <div className="logout-button">
           <FaSignOutAlt /> Logout
-        </div> */}
+        </div>
       </div>
 
       {/* Main Content */}
@@ -91,7 +91,7 @@ const MaterialDashboard = () => {
           <div className="materials-table-wrapper">
             <div className="table-header">
               <h2>Materials Inventory</h2>
-              <button className="add-material-btn">+ Add New Material</button>
+              <button className="add-material-btn">Add New Material</button>
             </div>
             {filteredMaterials.length > 0 ? (
               <table className="materials-table">
@@ -126,7 +126,7 @@ const MaterialDashboard = () => {
                 </tbody>
               </table>
             ) : (
-              <div className="no-data">No materials found. Try adjusting your search.</div>
+              <div className="no-data">No materials found</div>
             )}
           </div>
         </div>
