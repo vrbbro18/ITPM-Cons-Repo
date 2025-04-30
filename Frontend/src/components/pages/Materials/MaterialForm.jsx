@@ -96,6 +96,7 @@ const MaterialForm = () => {
             getEntryMaterials();
 
             // Clear form fields
+            // add setSelectionMaterial 
             setSelectedMaterial(null);
             setName("");
             setUnit("");
