@@ -92,6 +92,7 @@ const MaterialDashboard = () => {
         </section>
 
         {/* Materials Table */}
+        {/* Materials Table1 */}
         <div className="materialTableContainer">
           <div className="materials-table-wrapper">
             <div className="table-header">
