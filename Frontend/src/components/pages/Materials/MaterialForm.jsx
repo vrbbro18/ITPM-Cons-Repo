@@ -49,6 +49,7 @@ const MaterialForm = () => {
         }
     }
 
+    //handleMaterialChange function
     const handleMaterialChange = (e) => {
         const material = materials.find(mat => mat._id === e.target.value);
         setSelectedMaterial(material);
