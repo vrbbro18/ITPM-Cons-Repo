@@ -6,6 +6,7 @@ const MaterialDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   
   // Sample materials data for demonstration
+  // sample
   const materials = [
     { id: 1, name: "Cement", quantity: 250, unit: "Bags", value: 5000, lastUpdated: "2025-03-28" },
     { id: 2, name: "Steel Rods", quantity: 500, unit: "Pieces", value: 12000, lastUpdated: "2025-03-27" },
@@ -16,6 +17,8 @@ const MaterialDashboard = () => {
   ];
   
   // Filter materials based on search term
+  // Filter 
+  // filter
   const filteredMaterials = materials.filter(material => 
     material.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
