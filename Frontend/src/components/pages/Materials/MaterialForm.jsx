@@ -69,6 +69,7 @@ const MaterialForm = () => {
         }
     };
 
+    //handel purchase date 
     const handleDateOfPurchaseChange = (event) => {
         setDateOfPurchase(event.target.value);
     }
