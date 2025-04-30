@@ -45,6 +45,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="signUp" element={<Signup />} />
             <Route path="projects" element={<ProjectList />} />
             <Route path="projectDetails/:id" element={<ProjectDetails />} />
+            <Route path="materials/:id" element={<ProjectDetails />} />
             <Route path="customerDashboard" element={<CustomerDashboard />} />
             <Route path="MainDashboard" element={<MainDashboard />} />
             <Route path="customerForm" element={<CustomerForm />} />
@@ -57,6 +58,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="AddMaterial" element={<AddMaterial />} />
             <Route path="MaterialDashboard" element={<MaterialDashboard />} />
             <Route path="ProjectDashboard" element={<ProjectDashboard />} />
+            <Route path="editMaterial/:projectId/:materialId" element={<ProjectDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
