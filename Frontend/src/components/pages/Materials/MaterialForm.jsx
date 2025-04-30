@@ -60,6 +60,7 @@ const MaterialForm = () => {
         setTotalPrice(material ? material.unitPrice * quantity : 0);
     };
 
+    //handel quntity changes
     const handleQuantityChange = (event) => {
         const qty = parseFloat(event.target.value);
         setQuantity(qty);
