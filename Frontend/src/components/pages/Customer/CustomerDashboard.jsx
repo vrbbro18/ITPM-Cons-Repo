@@ -4,7 +4,7 @@ import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
 import Sidebar from "../Common/Sidebar";
 import { generateCustomerPDF } from '../../../utils/pdfGenerator';
-import './Styles/CustomerDashboard.css';
+import './Styles/CustomerDashboard.css'; // Keep this for other styles if needed
 
 const CustomerDashboard = () => {
   const [stats, setStats] = useState({ total: 0, stats: [] });
