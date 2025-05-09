@@ -26,6 +26,7 @@ import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
 import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
 import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx"
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

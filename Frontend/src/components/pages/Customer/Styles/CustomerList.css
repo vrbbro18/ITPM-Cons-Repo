@@ -140,14 +140,14 @@
 
 /* Specific Button Styles */
 .edit-btn {
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--text-color);
   border: none;
   cursor: pointer;
 }
 
 .edit-btn:hover {
-  background-color: #1a1c29;
+  background-color: #e04c11;
 }
 
 .delete-btn {
@@ -196,12 +196,65 @@
   margin-bottom: 15px;
 }
 
-.report-section .edit-btn,
-.report-section .delete-btn {
-  margin-right: 10px;
+.report-section p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.report-actions {
+  display: flex;
+  gap: 10px;
   margin-top: 20px;
 }
 
+.generate-report-btn,
+.download-pdf-btn,
+.close-report-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.generate-report-btn {
+  background-color: var(--primary);
+  color: var(--text-color);
+  border: none;
+}
+
+.generate-report-btn:hover {
+  background-color: #e04c11;
+}
+
+.download-pdf-btn {
+  background-color: #28a745;
+  color: var(--text-color);
+  border: none;
+}
+
+.download-pdf-btn:hover {
+  background-color: #218838;
+}
+
+.close-report-btn {
+  background-color: #dc3545;
+  color: var(--text-color);
+  border: none;
+}
+
+.close-report-btn:hover {
+  background-color: #c82333;
+}
+
+/* Loading */
 .loading {
   text-align: center;
   font-size: 18px;
@@ -261,5 +314,10 @@
   .customer-table th,
   .customer-table td {
     padding: 10px;
+  }
+
+  .report-actions {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
