@@ -25,7 +25,9 @@ import MaterialForm from "./components/pages/Materials/MaterialForm.jsx";
 import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
 import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
-import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx"
+import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx";
+import SketchBuilder from "../src/components/pages/sketch/SketchBuilder.jsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -59,6 +61,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="MaterialDashboard" element={<MaterialDashboard />} />
             <Route path="ProjectDashboard" element={<ProjectDashboard />} />
             <Route path="editMaterial/:projectId/:materialId" element={<ProjectDetails />} />
+            <Route path="generateSketch" element={<SketchBuilder />} />
+            
           </Route>
         </Routes>
       </BrowserRouter>

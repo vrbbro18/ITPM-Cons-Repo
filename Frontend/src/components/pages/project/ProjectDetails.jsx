@@ -239,6 +239,7 @@ const ProjectDetails = () => {
                         <li><a href="/construction-company-react-app/projects">🏗 Construction</a></li>
                         <li><a href="/construction-company-react-app/MaterialForm">🔧 Consulting & Services</a></li>
                         <li><a href="/construction-company-react-app/MaterialForm">📊 Reports & Analytics</a></li>
+                        <li><a href="/construction-company-react-app/generateSketch">📊 sketch & Analytics</a></li>
                     </ul>
                 </nav>
                 <div className="logout-button">
@@ -277,6 +278,12 @@ const ProjectDetails = () => {
                         <FaTools className="category-icon" />
                         <h4>Materials</h4>
                         <p>{assignedMaterials.length} items assigned</p>
+                    </div>
+
+                    <div className="category-card" onClick={() => openPopup('employees')}>
+                        <FaUsers className="category-icon" />
+                        <h4>Employees</h4>
+                        <p>{assignedEmployees.length} employees assigned</p>
                     </div>
 
                     <div className="category-card" onClick={() => openPopup('employees')}>

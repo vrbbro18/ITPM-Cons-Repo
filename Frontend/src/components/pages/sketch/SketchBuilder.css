@@ -1,0 +1,91 @@
+.sketch-wrapper {
+    display: flex;
+    height: 100vh;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .form-panel {
+    width: 300px;
+    padding: 20px;
+    background: #f0f0f0;
+    border-right: 1px solid #ccc;
+  }
+  
+  .form-panel h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form-panel label {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 14px;
+  }
+  
+  .form-panel input,
+  .form-panel select {
+    width: 100%;
+    padding: 6px;
+    margin-top: 4px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+  }
+  
+  .form-panel button {
+    padding: 10px 16px;
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .canvas-panel {
+    flex: 1;
+    background: #fff;
+    position: relative;
+  }
+  
+  .plan-canvas {
+    position: relative;
+    padding: 30px;
+  }
+  
+  .floor-plan-wrapper {
+    position: relative;
+  }
+  
+  .room-box {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #d9edf7;
+    border: 2px solid #31708f;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    text-align: center;
+    line-height: 60px;
+    font-size: 12px;
+  }
+  
+  .carpark {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 40px;
+    background: #e6e6e6;
+    border: 2px dashed #555;
+    text-align: center;
+    line-height: 40px;
+    font-size: 12px;
+  }
+  
+  .wall-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid #222;
+    box-sizing: border-box;
+  }
+  
