@@ -106,8 +106,6 @@ export default function ProjectServices() {
   });
 
   const validateDate = (date, fieldName) => {
-    if (!date) return `${fieldName} is required`;
-
     const selectedDate = new Date(date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -264,8 +262,10 @@ export default function ProjectServices() {
       case "budget":
         return !value ? "Budget is required" : "";
       case "startDate":
+        if (!value) return "Start Date is required";
         return validateDate(value, "Start Date");
       case "endDate":
+        if (!value) return "End Date is required";
         return validateDate(value, "End Date");
       default:
         return "";
@@ -433,7 +433,7 @@ export default function ProjectServices() {
             <div className="modal-grid">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Project Name
+                  Project Name &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -454,7 +454,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Customer Name
+                  Customer Name &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -475,7 +475,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Start Date
+                  Start Date &nbsp;&nbsp;
                 </label>
                 <input
                   type="date"
@@ -496,7 +496,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  End Date
+                  End Date &nbsp;&nbsp;
                 </label>
                 <input
                   type="date"
@@ -517,7 +517,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Email
+                  Email &nbsp;&nbsp;
                 </label>
                 <input
                   type="email"
@@ -536,7 +536,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Contact No
+                  Contact No &nbsp;&nbsp;
                 </label>
                 <input
                   type="tel"
@@ -557,7 +557,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Service Type
+                  Service Type &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -578,7 +578,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Message
+                  Message &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -599,7 +599,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Admin Note
+                  Admin Note &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -620,7 +620,7 @@ export default function ProjectServices() {
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Budget
+                  Budget &nbsp;&nbsp;
                 </label>
                 <input
                   type="text"
@@ -782,7 +782,9 @@ export default function ProjectServices() {
         </div>
       )}
 
-      <div className="add-projects-container">
+      <div className="add-projects-container" style={{position: "absolute",
+    left: "18%",
+    top: "10%"}}>
         <div className="form-section">
           <h2 className="section-title">Add Projects</h2>
           <div className="form-grid">
@@ -876,7 +878,7 @@ export default function ProjectServices() {
                 <p className="mt-1 text-sm text-red-600">{errors.endDate}</p>
               )}
             </div>
-            <div className="flex items-end">
+            <div className="flex items-end"> <br />
               <button onClick={handleAddProject} className="add-button">
                 ADD PROJECT
               </button>
