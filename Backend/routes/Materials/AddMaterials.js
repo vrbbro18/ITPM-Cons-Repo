@@ -58,6 +58,33 @@ router.post('/assign/materials', async (req, res) => {
       res.status(500).json({ error: "Error adding material", details: error.message });
     }
   });
+
+  // Routes for materials.js
+  router.get('/project/:projectId', async (req, res) => {
+      try {
+          const projectId = req.params.projectId;
+          // Find all materials assigned to this project
+          const materials = await ProjectMaterial.find({ projectId })
+              .populate('materialId', 'name unit unitPrice');
+          
+          // Format the response
+          const formattedMaterials = materials.map(item => ({
+              _id: item._id,
+              id: item.materialId._id,
+              name: item.materialId.name,
+              quantity: item.quantity,
+              unit: item.materialId.unit,
+              unitPrice: item.materialId.unitPrice,
+              totalPrice: item.quantity * item.materialId.unitPrice,
+              assignedDate: item.assignedDate
+          }));
+          
+          res.status(200).json(formattedMaterials);
+      } catch (error) {
+          console.error('Error fetching project materials:', error);
+          res.status(500).json({ error: 'Error fetching project materials' });
+      }
+  });
   
 
 

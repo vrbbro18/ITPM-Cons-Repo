@@ -251,6 +251,7 @@ body {
 }
 
 .materials-table {
+  margin-left: 10px;
   width: 100%;
   border-collapse: collapse;
 }

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { FaUser, FaBuilding, FaEdit, FaTrash, FaInfoCircle, FaTools, FaUsers, FaCalendarAlt } from "react-icons/fa";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaUser, FaBuilding, FaEdit, FaTrash, FaInfoCircle, FaTools, FaUsers, FaCalendarAlt, FaEye } from "react-icons/fa";
 import "../project/projectList.css";
 
 const ProjectDetails = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [project, setProject] = useState(null);
     const [availableMaterials, setAvailableMaterials] = useState([]);
     const [availableEmployees, setAvailableEmployees] = useState([]);
@@ -16,6 +17,7 @@ const ProjectDetails = () => {
     const [selectedEmployees, setSelectedEmployees] = useState({});
     const [editMaterial, setEditMaterial] = useState(null);
     const [editEmployee, setEditEmployee] = useState(null);
+    const [saveSuccess, setSaveSuccess] = useState(false);
 
     useEffect(() => {
         loadProject();
@@ -72,64 +74,70 @@ const ProjectDetails = () => {
 
     const saveAllAssignments = async () => {
         if (!project?._id) {
-          alert("Project not loaded yet!");
-          return;
+            alert("Project not loaded yet!");
+            return;
         }
-      
+
         try {
-          // Save Employees
-          if (assignedEmployees.length > 0) {
-            const employeePayload = {
-              projectId: project._id,
-              employees: assignedEmployees.map(emp => ({
-                id: emp._id,
-                designation: emp.designation,
-                assignedDate: emp.assignedDate
-              }))
-            };
-      
-            const empResponse = await fetch("http://localhost:5000/fetch-employees/assign/employees", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(employeePayload)
-            });
-      
-            if (!empResponse.ok) throw new Error("Failed to save employees");
-          }
-      
-          // Save Materials
-          if (assignedMaterials.length > 0) {
-            console.log("projectId", project._id)
-            
-            const materialPayload = {
-              projectId: project._id,
-              
-              MaterialEntry: assignedMaterials.map(mat => ({
-                
-                id: mat._id || mat.id,
-                quantity: mat.quantity,
-                unit: mat.unit,
-                unitPrice: mat.unitPrice,
-                totalPrice: mat.totalPrice,
-                assignedDate: mat.assignedDate
-              }))
-            };
-            const matResponse = await fetch("http://localhost:5000/add-materials/assign/materials", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(materialPayload)
-            });
-      
-            if (!matResponse.ok) throw new Error("Failed to save materials");
-          }
-      
-          alert("Assignments saved successfully!");
+            // Save Employees
+            if (assignedEmployees.length > 0) {
+                const employeePayload = {
+                    projectId: project._id,
+                    employees: assignedEmployees.map(emp => ({
+                        id: emp._id,
+                        designation: emp.designation,
+                        assignedDate: emp.assignedDate
+                    }))
+                };
+
+                const empResponse = await fetch("http://localhost:5000/fetch-employees/assign/employees", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(employeePayload)
+                });
+
+                if (!empResponse.ok) throw new Error("Failed to save employees");
+            }
+
+            // Save Materials
+            if (assignedMaterials.length > 0) {
+                console.log("projectId", project._id)
+
+                const materialPayload = {
+                    projectId: project._id,
+
+                    MaterialEntry: assignedMaterials.map(mat => ({
+
+                        id: mat._id || mat.id,
+                        quantity: mat.quantity,
+                        unit: mat.unit,
+                        unitPrice: mat.unitPrice,
+                        totalPrice: mat.totalPrice,
+                        assignedDate: mat.assignedDate
+                    }))
+                };
+                const matResponse = await fetch("http://localhost:5000/add-materials/assign/materials", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(materialPayload)
+                });
+
+                if (!matResponse.ok) throw new Error("Failed to save materials");
+            }
+
+            alert("Assignments saved successfully!");
+            setSaveSuccess(true);
         } catch (err) {
-          console.error("Error saving assignments:", err);
-          alert("Failed to save assignments.");
+            console.error("Error saving assignments:", err);
+            alert("Failed to save assignments.");
         }
-      };
-      
+    };
+
+    const viewProject = () => {
+        // Correct path based on the route you defined
+        window.open(`/construction-company-react-app/projectDetails/${id}`, '_blank');
+    };
+    
 
     const assignEmployees = () => {
         const selectedEmpList = availableEmployees.filter(emp => selectedEmployees[emp._id]);
@@ -192,6 +200,7 @@ const ProjectDetails = () => {
 
         setMaterialQuantities((prev) => ({ ...prev, [materialId]: "" }));
     };
+
     const saveEditMaterials = async () => {
         try {
             console.log("Editing Material ID:", editMaterial.id);
@@ -205,7 +214,7 @@ const ProjectDetails = () => {
                 })
             });
             if (!response.ok) {
-                throw new error('Failed to update')
+                throw new Error('Failed to update')
             }
             const updatedMaterial = await response.json();
             setAssignedMaterials((prev) =>
@@ -213,9 +222,10 @@ const ProjectDetails = () => {
             );
             setEditMaterial(null);
         } catch (error) {
-            console.error("Error re", error)
+            console.error("Error updating material:", error)
         }
     }
+
     const openPopup = (popupType) => {
         setActivePopup(popupType);
     };
@@ -223,12 +233,15 @@ const ProjectDetails = () => {
     const closePopup = () => {
         setActivePopup(null);
     };
+
     const openEditMaterial = (material) => {
         setEditMaterial(material)
     }
+
     const openEditEmployees = (employee) => {
         setEditEmployee(employee)
     }
+
     return (
         <div>
             <aside className="sidebar">
@@ -242,9 +255,7 @@ const ProjectDetails = () => {
                         <li><a href="/construction-company-react-app/generateSketch">📊 sketch & Analytics</a></li>
                     </ul>
                 </nav>
-                <div className="logout-button">
-                    <i className="fas fa-sign-out-alt"></i>
-                </div>
+                
             </aside>
 
             <div className="project-details-container">
@@ -271,6 +282,8 @@ const ProjectDetails = () => {
                     <p>Loading project details...</p>
                 )}
 
+                
+
                 {/* Assignment Categories */}
                 <h3 className="section-title">Manage Project Resources</h3>
                 <div className="assignment-categories">
@@ -278,12 +291,6 @@ const ProjectDetails = () => {
                         <FaTools className="category-icon" />
                         <h4>Materials</h4>
                         <p>{assignedMaterials.length} items assigned</p>
-                    </div>
-
-                    <div className="category-card" onClick={() => openPopup('employees')}>
-                        <FaUsers className="category-icon" />
-                        <h4>Employees</h4>
-                        <p>{assignedEmployees.length} employees assigned</p>
                     </div>
 
                     <div className="category-card" onClick={() => openPopup('employees')}>
@@ -497,94 +504,156 @@ const ProjectDetails = () => {
                                 <button className="close-button" onClick={closePopup}>×</button>
                             </div>
                             <div className="popup-body">
-                                {/* Date range picker form would go here */}
-                                <p>Date range assignment functionality to be implemented</p>
+                                <div className="date-range-inputs">
+                                    <div className="input-group">
+                                        <label>Start Date:</label>
+                                        <input
+                                            type="date"
+                                            value={assignedDateRange.start}
+                                            onChange={(e) => setAssignedDateRange(prev => ({ ...prev, start: e.target.value }))}
+                                        />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>End Date:</label>
+                                        <input
+                                            type="date"
+                                            value={assignedDateRange.end}
+                                            onChange={(e) => setAssignedDateRange(prev => ({ ...prev, end: e.target.value }))}
+                                        />
+                                    </div>
+                                </div>
                             </div>
                             <div className="popup-footer">
-                                <button className="done-button" onClick={closePopup}>Done</button>
+                                <button className="assign-button" onClick={closePopup}>Save Timeline</button>
+                                <button className="done-button" onClick={closePopup}>Cancel</button>
                             </div>
                         </div>
                     </div>
                 )}
 
+                {/* Edit Material Modal */}
                 {editMaterial && (
                     <div className="popup-overlay">
                         <div className="popup-content">
                             <div className="popup-header">
-                                <h3>Edit Assigned Material</h3>
+                                <h3>Edit Material Assignment</h3>
                                 <button className="close-button" onClick={() => setEditMaterial(null)}>×</button>
                             </div>
-
                             <div className="popup-body">
-                                <table className="assignment-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Material Name</th>
-                                            {/* <th>Available Quantity</th> */}
-                                            <th>Assign Quantity</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <td>{editMaterial.name}</td>
-                                        {/* <td>{editMaterial.quantity}</td> */}
-                                        <td>
-                                            <input type="number"
-                                                value={editMaterial.quantity}
-                                                onChange={(e) =>
-                                                    setEditMaterial({
-                                                        ...editMaterial,
-                                                        quantity: e.target.value
-                                                    })
-                                                } />
-                                        </td>
-                                        <td>
-                                            <button className="save"
-                                                onClick={saveEditMaterials}
-                                            >Save
-                                            </button>
-                                        </td>
-                                    </tbody>
-                                </table>
+                                <div className="edit-form">
+                                    <div className="input-group">
+                                        <label>Material:</label>
+                                        <input type="text" value={editMaterial.name} disabled />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Quantity:</label>
+                                        <input
+                                            type="number"
+                                            value={editMaterial.quantity}
+                                            onChange={(e) => setEditMaterial({
+                                                ...editMaterial,
+                                                quantity: parseInt(e.target.value)
+                                            })}
+                                            min="1"
+                                        />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Unit:</label>
+                                        <input type="text" value={editMaterial.unit} disabled />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Unit Price:</label>
+                                        <input type="text" value={editMaterial.unitPrice} disabled />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="popup-footer">
+                                <button className="save-button" onClick={saveEditMaterials}>Save Changes</button>
+                                <button className="done-button" onClick={() => setEditMaterial(null)}>Cancel</button>
                             </div>
                         </div>
                     </div>
                 )}
 
+                {/* Edit Employee Modal */}
                 {editEmployee && (
                     <div className="popup-overlay">
                         <div className="popup-content">
                             <div className="popup-header">
-                                <h3>Edit Assigned Employees</h3>
+                                <h3>Edit Employee Assignment</h3>
                                 <button className="close-button" onClick={() => setEditEmployee(null)}>×</button>
                             </div>
-
                             <div className="popup-body">
-                                <table className="assignment-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Employee Name</th>
-                                            <th>Designation</th>
-                                            <th>Work Type</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <td>{editEmployee.name}</td>
-                                        <td>{editEmployee.designation}</td>
-                                        <td>{editEmployee.remarks}</td>
-                                        <td>
-                                            <button className="save"
-                                            >Save
-                                            </button>
-                                        </td>
-                                    </tbody>
-                                </table>
+                                <div className="edit-form">
+                                    <div className="input-group">
+                                        <label>Name:</label>
+                                        <input type="text" value={editEmployee.name} disabled />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Designation:</label>
+                                        <input
+                                            type="text"
+                                            value={editEmployee.designation}
+                                            onChange={(e) => setEditEmployee({
+                                                ...editEmployee,
+                                                designation: e.target.value
+                                            })}
+                                        />
+                                    </div>
+                                    <div className="input-group">
+                                        <label>Work Type:</label>
+                                        <input
+                                            type="text"
+                                            value={editEmployee.remarks}
+                                            onChange={(e) => setEditEmployee({
+                                                ...editEmployee,
+                                                remarks: e.target.value
+                                            })}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="popup-footer">
+                                <button className="save-button" onClick={() => {
+                                    setAssignedEmployees(prev =>
+                                        prev.map(emp => emp._id === editEmployee._id ? editEmployee : emp)
+                                    );
+                                    setEditEmployee(null);
+                                }}>Save Changes</button>
+                                <button className="done-button" onClick={() => setEditEmployee(null)}>Cancel</button>
                             </div>
                         </div>
                     </div>
                 )}
-                <button onClick={saveAllAssignments }>Save</button>
+                {/* Action buttons */}
+                <div className="action-buttons">
+                    <button
+                        className="save-button"
+                        onClick={saveAllAssignments}
+                    >
+                        Save Assignments
+                    </button>
+
+                    <button
+                        className="view-button"
+                        onClick={viewProject}
+                        disabled={!saveSuccess}
+                    >
+                        <FaEye /> View Project
+                    </button>
+
+                    <button
+                        className="view-button"
+                        navigate='/construction-company-react-app/generateSketch'
+                        disabled={!saveSuccess}
+                    >
+                      Cancel
+                    </button>
+
+                    {!saveSuccess && (
+                        <p className="note">Save assignments first to enable the View button</p>
+                    )}
+                </div>
             </div>
         </div>
     );

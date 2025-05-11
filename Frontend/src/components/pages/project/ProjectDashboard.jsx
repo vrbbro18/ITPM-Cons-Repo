@@ -72,9 +72,7 @@ const ProjectDashboard = () => {
                         <li><a href="/construction-company-react-app/MaterialForm"><i className="fas fa-envelope"></i> Reports & Analytics</a></li>
                     </ul>
                 </nav>
-                <div className="logout-button">
-                    <i className="fas fa-sign-out-alt"></i> Logout
-                </div>
+                
             </aside>
 
             <main className="dashboard-content">

@@ -210,9 +210,9 @@
     overflow-x: auto;
   }
   
-  .materials-table {
+  .materials-tables {
     width: 80%;
-    margin-left: 200px;
+    margin-left: 250px;
     border-collapse: collapse;
     border-radius: 10px;
     overflow: hidden;
@@ -226,12 +226,12 @@
     to { opacity: 1; transform: translateY(0); }
   }
   
-  .materials-table thead {
+  .materials-tables thead {
     background: linear-gradient(to right, #00838f, #0097a7);
     color: white;
   }
   
-  .materials-table th {
+  .materials-tables th {
     padding: 1.2rem 1rem;
     text-align: left;
     font-weight: 500;
@@ -240,22 +240,22 @@
     font-size: 0.9rem;
   }
   
-  .materials-table tbody tr {
+  .materials-tables tbody tr {
     border-bottom: 1px solid #f0f0f0;
     transition: all 0.2s ease;
   }
   
-  .materials-table tbody tr:hover {
+  .materials-tables tbody tr:hover {
     background-color: #f9f9f9;
     transform: scale(1.005);
   }
   
-  .materials-table td {
+  .materials-tables td {
     padding: 1rem;
     color: #455a64;
   }
   
-  .materials-table td:nth-child(4) {
+  .materials-tables td:nth-child(4) {
     font-weight: 600;
     color: #00838f;
   }
@@ -318,8 +318,8 @@
       padding: 0 1rem;
     }
     
-    .materials-table th,
-    .materials-table td {
+    .materials-tables th,
+    .materials-tables td {
       padding: 0.8rem 0.5rem;
       font-size: 0.9rem;
     }
@@ -355,6 +355,6 @@
   }
   
   /* Table Row Alternating Colors */
-  .materials-table tbody tr:nth-child(even) {
+  .materials-tables tbody tr:nth-child(even) {
     background-color: #f8fafa;
   }

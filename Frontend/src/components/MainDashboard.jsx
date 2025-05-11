@@ -93,17 +93,10 @@ const AdminDashboard = () => {
                 <i className="fas fa-chart-bar"></i> <span>Reports</span>
               </a>
             </li>
-            <li>
-              <a href="/admin/settings">
-                <i className="fas fa-cog"></i> <span>Settings</span>
-              </a>
-            </li>
           </ul>
         </nav>
 
-        <div className="logout-button">
-          <i className="fas fa-sign-out-alt"></i> <span>Logout</span>
-        </div>
+        
       </aside>
 
       {/* Main Content */}

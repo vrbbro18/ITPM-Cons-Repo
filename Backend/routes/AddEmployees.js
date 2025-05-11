@@ -41,4 +41,31 @@ router.post('/assign/employees', async (req, res) => {
     }
 });
 
+
+
+// Routes for employees.js
+router.get('/project/:projectId', async (req, res) => {
+    try {
+        const projectId = req.params.projectId;
+        // Find all employees assigned to this project
+        const employees = await ProjectEmployee.find({ projectId })
+            .populate('employeeId', 'name designation remarks'); // Populate employee details
+        
+        // Format the response
+        const formattedEmployees = employees.map(item => ({
+            _id: item._id,
+            id: item.employeeId._id,
+            name: item.employeeId.name,
+            designation: item.designation || item.employeeId.designation,
+            remarks: item.employeeId.remarks,
+            assignedDate: item.assignedDate
+        }));
+        
+        res.status(200).json(formattedEmployees);
+    } catch (error) {
+        console.error('Error fetching project employees:', error);
+        res.status(500).json({ error: 'Error fetching project employees' });
+    }
+});
+
 export default router

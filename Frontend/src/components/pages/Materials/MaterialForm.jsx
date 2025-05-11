@@ -145,10 +145,6 @@ const MaterialForm = () => {
                         <li><a href="/admin/settings"><FaCreditCard className="menu-icon" /> Billing & Payments</a></li>
                       </ul>
                     </nav>
-            
-                    <div className="logout-button">
-                      <FaSignOutAlt /> Logout
-                    </div>
                   </div>
 
             <div style={styles.contentArea}>

@@ -281,7 +281,7 @@ const AddMaterial = () => {
 
             <h3>All Materials</h3>
             <div className="materialTableContainer">
-                <table className="materials-table">
+                <table className="materials-tables">
                     <thead>
                         <tr>
                             <th>ID</th>
