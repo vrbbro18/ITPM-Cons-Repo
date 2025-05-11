@@ -14,6 +14,8 @@ const ProjectDetails = () => {
     const [assignedEmployees, setAssignedEmployees] = useState([]);
     const [assignedDateRange, setAssignedDateRange] = useState({ start: '', end: '' });
     const [selectedEmployees, setSelectedEmployees] = useState({});
+    const [editMaterial, setEditMaterial] = useState(null);
+    const [editEmployee, setEditEmployee] = useState(null);
 
     useEffect(() => {
         loadProject();
@@ -68,6 +70,67 @@ const ProjectDetails = () => {
         }));
     };
 
+    const saveAllAssignments = async () => {
+        if (!project?._id) {
+          alert("Project not loaded yet!");
+          return;
+        }
+      
+        try {
+          // Save Employees
+          if (assignedEmployees.length > 0) {
+            const employeePayload = {
+              projectId: project._id,
+              employees: assignedEmployees.map(emp => ({
+                id: emp._id,
+                designation: emp.designation,
+                assignedDate: emp.assignedDate
+              }))
+            };
+      
+            const empResponse = await fetch("http://localhost:5000/fetch-employees/assign/employees", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(employeePayload)
+            });
+      
+            if (!empResponse.ok) throw new Error("Failed to save employees");
+          }
+      
+          // Save Materials
+          if (assignedMaterials.length > 0) {
+            console.log("projectId", project._id)
+            
+            const materialPayload = {
+              projectId: project._id,
+              
+              MaterialEntry: assignedMaterials.map(mat => ({
+                
+                id: mat._id || mat.id,
+                quantity: mat.quantity,
+                unit: mat.unit,
+                unitPrice: mat.unitPrice,
+                totalPrice: mat.totalPrice,
+                assignedDate: mat.assignedDate
+              }))
+            };
+            const matResponse = await fetch("http://localhost:5000/add-materials/assign/materials", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(materialPayload)
+            });
+      
+            if (!matResponse.ok) throw new Error("Failed to save materials");
+          }
+      
+          alert("Assignments saved successfully!");
+        } catch (err) {
+          console.error("Error saving assignments:", err);
+          alert("Failed to save assignments.");
+        }
+      };
+      
+
     const assignEmployees = () => {
         const selectedEmpList = availableEmployees.filter(emp => selectedEmployees[emp._id]);
         if (selectedEmpList.length === 0) {
@@ -87,7 +150,7 @@ const ProjectDetails = () => {
             prev.filter((emp) => !selectedEmployees[emp._id])
         );
 
-        setSelectedEmployees({}); // Reset selection
+        setSelectedEmployees({});
         closePopup();
     };
 
@@ -129,7 +192,30 @@ const ProjectDetails = () => {
 
         setMaterialQuantities((prev) => ({ ...prev, [materialId]: "" }));
     };
-
+    const saveEditMaterials = async () => {
+        try {
+            console.log("Editing Material ID:", editMaterial.id);
+            const response = await fetch(`http://localhost:5000/fetch-materials/${editMaterial._id}`, {
+                method: 'PUT',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    quantity: editMaterial.quantity,
+                })
+            });
+            if (!response.ok) {
+                throw new error('Failed to update')
+            }
+            const updatedMaterial = await response.json();
+            setAssignedMaterials((prev) =>
+                prev.map((mat) => (mat._id === updatedMaterial._id ? updatedMaterial : mat))
+            );
+            setEditMaterial(null);
+        } catch (error) {
+            console.error("Error re", error)
+        }
+    }
     const openPopup = (popupType) => {
         setActivePopup(popupType);
     };
@@ -137,7 +223,12 @@ const ProjectDetails = () => {
     const closePopup = () => {
         setActivePopup(null);
     };
-
+    const openEditMaterial = (material) => {
+        setEditMaterial(material)
+    }
+    const openEditEmployees = (employee) => {
+        setEditEmployee(employee)
+    }
     return (
         <div>
             <aside className="sidebar">
@@ -203,7 +294,6 @@ const ProjectDetails = () => {
 
                 {/* Assignment Summary Tables */}
                 <div className="assignment-summaries">
-                    {/* Materials Summary */}
                     <div className="summary-section">
                         <h3 className="section-title">Assigned Materials</h3>
                         {assignedMaterials.length > 0 ? (
@@ -215,7 +305,7 @@ const ProjectDetails = () => {
                                         <th>Unit</th>
                                         <th>Unit Price</th>
                                         <th>Total Price</th>
-                                        <th>Assigned On</th>
+                                        <th>Assigned Date</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -231,7 +321,7 @@ const ProjectDetails = () => {
                                             <td>
                                                 <button
                                                     className="edit-button"
-                                                    onClick={() => assignMaterial(mat._id)}>
+                                                    onClick={() => openEditMaterial(mat)}>
                                                     Edit
                                                 </button>
                                                 <button
@@ -257,8 +347,10 @@ const ProjectDetails = () => {
                                 <thead>
                                     <tr>
                                         <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Assigned On</th>
+                                        <th>Designation</th>
+                                        <th>Work Type</th>
+                                        <th>Assigned Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -266,7 +358,18 @@ const ProjectDetails = () => {
                                         <tr key={emp._id}>
                                             <td>{emp.name}</td>
                                             <td>{emp.designation}</td>
+                                            <td>{emp.remarks}</td>
                                             <td>{new Date(emp.assignedDate).toLocaleDateString()}</td>
+                                            <td>
+                                                <button className="edit-button"
+                                                    onClick={() => openEditEmployees(emp._id)}>
+                                                    Edit
+                                                </button>
+                                                <button className="delete-button"
+                                                    onClick={() => assignEmployees(emp._id)}>
+                                                    Delete
+                                                </button>
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -396,6 +499,85 @@ const ProjectDetails = () => {
                         </div>
                     </div>
                 )}
+
+                {editMaterial && (
+                    <div className="popup-overlay">
+                        <div className="popup-content">
+                            <div className="popup-header">
+                                <h3>Edit Assigned Material</h3>
+                                <button className="close-button" onClick={() => setEditMaterial(null)}>×</button>
+                            </div>
+
+                            <div className="popup-body">
+                                <table className="assignment-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Material Name</th>
+                                            {/* <th>Available Quantity</th> */}
+                                            <th>Assign Quantity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>{editMaterial.name}</td>
+                                        {/* <td>{editMaterial.quantity}</td> */}
+                                        <td>
+                                            <input type="number"
+                                                value={editMaterial.quantity}
+                                                onChange={(e) =>
+                                                    setEditMaterial({
+                                                        ...editMaterial,
+                                                        quantity: e.target.value
+                                                    })
+                                                } />
+                                        </td>
+                                        <td>
+                                            <button className="save"
+                                                onClick={saveEditMaterials}
+                                            >Save
+                                            </button>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {editEmployee && (
+                    <div className="popup-overlay">
+                        <div className="popup-content">
+                            <div className="popup-header">
+                                <h3>Edit Assigned Employees</h3>
+                                <button className="close-button" onClick={() => setEditEmployee(null)}>×</button>
+                            </div>
+
+                            <div className="popup-body">
+                                <table className="assignment-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee Name</th>
+                                            <th>Designation</th>
+                                            <th>Work Type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>{editEmployee.name}</td>
+                                        <td>{editEmployee.designation}</td>
+                                        <td>{editEmployee.remarks}</td>
+                                        <td>
+                                            <button className="save"
+                                            >Save
+                                            </button>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <button onClick={saveAllAssignments }>Save</button>
             </div>
         </div>
     );
