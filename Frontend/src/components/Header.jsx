@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Header({ pageName, setPageName }) {
   const [show, setShow] = useState("");
+  const [showServices, setShowServices] = useState(false);
 
   const showNavbar = () => {
     if (show === "") {
@@ -11,6 +12,11 @@ export default function Header({ pageName, setPageName }) {
       setShow("");
     }
   };
+
+  const toggleServices = () => {
+    setShowServices(!showServices);
+  };
+
   return (
     <div className="container-fluid sticky-top bg-dark bg-light-radial shadow-sm px-3 pe-lg-0">
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark py-3 py-lg-0">
@@ -59,18 +65,40 @@ export default function Header({ pageName, setPageName }) {
             >
               About
             </Link>
-            <Link
-              to="/construction-company-react-app/services"
-              className={`nav-item nav-link ${
-                pageName === "Service" && "active"
-              }`}
-              onClick={(e) => {
-                setPageName("Service");
-                setShow("");
-              }}
-            >
-              Service
-            </Link>
+            <div className="nav-item dropdown">
+              <a
+                href="#"
+                className={`nav-link dropdown-toggle ${(pageName === "Billing" || pageName === "ProjectServices") && "active"}`}
+                onClick={toggleServices}
+                style={{ cursor: 'pointer' }}
+              >
+                Services
+              </a>
+              <div className={`dropdown-menu m-0 ${showServices ? 'show' : ''}`} style={{ display: showServices ? 'block' : 'none' }}>
+                <Link 
+                  to="/construction-company-react-app/billing" 
+                  className="dropdown-item"
+                  onClick={(e) => {
+                    setPageName("Billing");
+                    setShow("");
+                    setShowServices(false);
+                  }}
+                >
+                  <i className="bi bi-receipt me-2"></i>Billing Form
+                </Link>
+                <Link 
+                  to="/construction-company-react-app/project-services" 
+                  className="dropdown-item"
+                  onClick={(e) => {
+                    setPageName("ProjectServices");
+                    setShow("");
+                    setShowServices(false);
+                  }}
+                >
+                  <i className="bi bi-kanban me-2"></i>Project Services
+                </Link>
+              </div>
+            </div>
             <Link
               to="/construction-company-react-app/blogs"
               className={`nav-item nav-link ${
@@ -134,15 +162,15 @@ export default function Header({ pageName, setPageName }) {
               User
             </Link>
             <Link
-  to="/construction-company-react-app/customerDemoForm"
-  className="nav-item nav-link bg-secondary text-white px-5 ms-3 d-none d-lg-block"
-  onClick={(e) => {
-    setPageName("CustomerForm");
-    setShow("");
-  }}
->
-  Request A Demo <i className="bi bi-arrow-right"></i>
-</Link>
+              to="/construction-company-react-app/customerDemoForm"
+              className="nav-item nav-link bg-secondary text-white px-5 ms-3 d-none d-lg-block"
+              onClick={(e) => {
+                setPageName("CustomerForm");
+                setShow("");
+              }}
+            >
+              Request A Demo <i className="bi bi-arrow-right"></i>
+            </Link>
           </div>
         </div>
       </nav>

@@ -14,6 +14,8 @@ function App() {
     "/construction-company-react-app/services",
     "/construction-company-react-app/blogs",
     "/construction-company-react-app/contact"
+  
+
   ];
 
 
