@@ -26,8 +26,13 @@ import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
 import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
 import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx";
+import BillingForm from "./components/pages/Services/BillingForm.jsx";
+import ProjectServices from "./components/pages/Services/ProjectServices.jsx";
 import SketchBuilder from "../src/components/pages/sketch/SketchBuilder.jsx";
 import ProjectView from '../src/components/pages/project/projectView.jsx';  
+
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -60,10 +65,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="AddMaterial" element={<AddMaterial />} />
             <Route path="MaterialDashboard" element={<MaterialDashboard />} />
             <Route path="ProjectDashboard" element={<ProjectDashboard />} />
-            <Route path="editMaterial/:projectId/:materialId" element={<ProjectDetails />} />
             <Route path="generateSketch" element={<SketchBuilder />} />
             <Route path="ProjectView" element={<ProjectView />} />
-            
+          
+            <Route path="billing" element={<BillingForm />} />
+            <Route path="project-services" element={<ProjectServices />} />
+
+            <Route path="editMaterial/:projectId/:materialId" element={<ProjectDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
