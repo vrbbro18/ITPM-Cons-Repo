@@ -16,10 +16,10 @@
 .add-projects-container {
   background-color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 526px;
+  min-height: 526px;
   width: 1200px;
-  margin-top: 120px;
-  margin-left: 220px;
+  margin-top: 20px;
+  margin-left: 50px;
   border-radius: 6px;
   border: 1px solid #e5e7eb;
   position: relative;
@@ -276,4 +276,4 @@
     transform: translateY(0);
     opacity: 1;
   }
-} 
+}
