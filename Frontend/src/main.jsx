@@ -25,9 +25,14 @@ import MaterialForm from "./components/pages/Materials/MaterialForm.jsx";
 import AddMaterial from "./components/pages/Materials/AddMaterial.jsx";
 import MaterialDashboard from "./components/pages/Materials/MaterialDashboard.jsx";
 import Signup from "./components/SignUp.jsx";
+
 import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx";
 import BillingForm from "./components/pages/Services/BillingForm.jsx";
 import ProjectServices from "./components/pages/Services/ProjectServices.jsx";
+
+import ProjectDashboard from "../src/components/pages/project/ProjectDashboard.jsx"
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -47,6 +52,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="signUp" element={<Signup />} />
             <Route path="projects" element={<ProjectList />} />
             <Route path="projectDetails/:id" element={<ProjectDetails />} />
+            <Route path="materials/:id" element={<ProjectDetails />} />
             <Route path="customerDashboard" element={<CustomerDashboard />} />
             <Route path="MainDashboard" element={<MainDashboard />} />
             <Route path="customerForm" element={<CustomerForm />} />
@@ -59,8 +65,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="AddMaterial" element={<AddMaterial />} />
             <Route path="MaterialDashboard" element={<MaterialDashboard />} />
             <Route path="ProjectDashboard" element={<ProjectDashboard />} />
+
             <Route path="billing" element={<BillingForm />} />
             <Route path="project-services" element={<ProjectServices />} />
+
+            <Route path="editMaterial/:projectId/:materialId" element={<ProjectDetails />} />
+
           </Route>
         </Routes>
       </BrowserRouter>

@@ -6,15 +6,20 @@ const MaterialDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   
   // Sample materials data for demonstration
+  // sample
   const materials = [
     { id: 1, name: "Cement", quantity: 250, unit: "Bags", value: 5000, lastUpdated: "2025-03-28" },
     { id: 2, name: "Steel Rods", quantity: 500, unit: "Pieces", value: 12000, lastUpdated: "2025-03-27" },
     { id: 3, name: "Bricks", quantity: 5000, unit: "Pieces", value: 3500, lastUpdated: "2025-03-25" },
     { id: 4, name: "Sand", quantity: 30, unit: "Tons", value: 2400, lastUpdated: "2025-03-26" },
     { id: 5, name: "Gravel", quantity: 25, unit: "Tons", value: 1800, lastUpdated: "2025-03-24" },
+    { id: 6, name: "notes", quantity: 25, unit: "Tons", value: 1800, lastUpdated: "2025-03-24" },
   ];
   
   // Filter materials based on search term
+  // Filter 
+  // Filter 
+  // filter
   const filteredMaterials = materials.filter(material => 
     material.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -39,9 +44,9 @@ const MaterialDashboard = () => {
           </ul>
         </nav>
 
-        {/* <div className="logout-button">
+        <div className="logout-button">
           <FaSignOutAlt /> Logout
-        </div> */}
+        </div>
       </div>
 
       {/* Main Content */}
@@ -87,11 +92,12 @@ const MaterialDashboard = () => {
         </section>
 
         {/* Materials Table */}
+        {/* Materials Table1 */}
         <div className="materialTableContainer">
           <div className="materials-table-wrapper">
             <div className="table-header">
               <h2>Materials Inventory</h2>
-              <button className="add-material-btn">+ Add New Material</button>
+              <button className="add-material-btn">Add New Material</button>
             </div>
             {filteredMaterials.length > 0 ? (
               <table className="materials-table">
@@ -126,7 +132,7 @@ const MaterialDashboard = () => {
                 </tbody>
               </table>
             ) : (
-              <div className="no-data">No materials found. Try adjusting your search.</div>
+              <div className="no-data">No materials found</div>
             )}
           </div>
         </div>

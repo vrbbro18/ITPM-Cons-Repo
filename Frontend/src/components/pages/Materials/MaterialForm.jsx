@@ -35,7 +35,8 @@ const MaterialForm = () => {
             setIsLoading(false);
         }
     }
-
+    
+    //getEntrymaterials function
     const getEntryMaterials = async () => {
         setIsLoading(true);
         try {
@@ -48,6 +49,8 @@ const MaterialForm = () => {
         }
     }
 
+    //handleMaterialChange function
+    // handleMaterial function 
     const handleMaterialChange = (e) => {
         const material = materials.find(mat => mat._id === e.target.value);
         setSelectedMaterial(material);
@@ -57,6 +60,7 @@ const MaterialForm = () => {
         setTotalPrice(material ? material.unitPrice * quantity : 0);
     };
 
+    //handel quntity changes
     const handleQuantityChange = (event) => {
         const qty = parseFloat(event.target.value);
         setQuantity(qty);
@@ -65,6 +69,7 @@ const MaterialForm = () => {
         }
     };
 
+    //handel purchase date 
     const handleDateOfPurchaseChange = (event) => {
         setDateOfPurchase(event.target.value);
     }
@@ -96,6 +101,7 @@ const MaterialForm = () => {
             getEntryMaterials();
 
             // Clear form fields
+            // add setSelectionMaterial 
             setSelectedMaterial(null);
             setName("");
             setUnit("");

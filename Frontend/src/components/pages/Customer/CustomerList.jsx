@@ -46,22 +46,47 @@ const CustomerList = ({ serviceType }) => {
   };
 
   const generateReport = () => {
+    if (customers.length === 0) {
+      alert('No data available to generate a report.');
+      return;
+    }
     setShowReport(true);
   };
 
   const downloadPDF = () => {
-    const columns = [
-      { header: 'Name', accessor: 'name' },
-      { header: 'Email', accessor: 'email' },
-      { header: 'Phone', accessor: 'phone' },
-      { header: 'Service Type', accessor: 'serviceType' },
-      { header: 'Status', accessor: 'status' },
-      { header: 'Project Name', accessor: 'projectName' },
-      { header: 'Budget', accessor: 'budget' }
-    ];
+    if (customers.length === 0) {
+      alert('No data available to download as PDF.');
+      return;
+    }
+    try {
+      console.log('Generating PDF with data:', customers);
+      const columns = [
+        { header: 'Customer Name', accessor: 'name' },
+        { header: 'Project Name', accessor: 'projectName' },
+        { header: 'Email', accessor: 'email' },
+        { header: 'Phone', accessor: 'phone' },
+        { header: 'Budget', accessor: 'budget' },
+        { header: 'Start Date', accessor: 'startDate' },
+        { header: 'End Date', accessor: 'endDate' },
+        { header: 'Admin Notes', accessor: 'adminNotes' },
+        { header: 'Status', accessor: 'status' },
+      ];
 
-    const doc = generateCustomerPDF(customers, columns, 'Customer List Report');
-    doc.save('customer_list_report.pdf');
+      const formattedCustomers = customers.map(customer => ({
+        ...customer,
+        startDate: customer.startDate ? new Date(customer.startDate).toLocaleDateString() : 'N/A',
+        endDate: customer.endDate ? new Date(customer.endDate).toLocaleDateString() : 'N/A',
+        projectName: customer.projectName || 'N/A',
+        budget: customer.budget || 'N/A',
+        adminNotes: customer.adminNotes || 'N/A',
+      }));
+
+      const doc = generateCustomerPDF(formattedCustomers, columns, 'Customer List Report');
+      doc.save('customer_list_report.pdf');
+    } catch (error) {
+      console.error('Error generating PDF:', error);
+      alert('Failed to generate PDF. Please check if all dependencies are installed and try again.');
+    }
   };
 
   return (
@@ -79,9 +104,9 @@ const CustomerList = ({ serviceType }) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* <button className="edit-btn" onClick={generateReport}>
-              Generate Reports
-            </button> */}
+            <button className="generate-report-btn" onClick={generateReport}>
+              <i className="fas fa-file-alt"></i> Generate Report
+            </button>
           </div>
         </div>
         {loading ? (
@@ -89,36 +114,54 @@ const CustomerList = ({ serviceType }) => {
         ) : (
           showReport ? (
             <div className="report-section">
-              <h3>Current Reports</h3>
+              <h3>Customer List Report</h3>
               <p>Generated on: {new Date().toLocaleString()}</p>
+              <p>Search Term: {searchTerm || 'All'}</p>
+              <p>Total Projects: {customers.length}</p>
               <table className="customer-table">
                 <thead>
                   <tr>
-                    <th>Name</th>
+                    <th>Customer Name</th>
+                    <th>Project Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Service Type</th>
-                    <th>Status</th>
-                    <th>Project Name</th>
                     <th>Budget</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Admin Notes</th>
+                    <th>Status</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {customers.map(customer => (
-                    <tr key={customer._id}>
-                      <td>{customer.name}</td>
-                      <td>{customer.email}</td>
-                      <td>{customer.phone}</td>
-                      <td>{customer.serviceType}</td>
-                      <td><span className={`status-badge ${customer.status}`}>{customer.status}</span></td>
-                      <td>{customer.projectName || 'N/A'}</td>
-                      <td>{customer.budget || 'N/A'}</td>
+                  {customers.length > 0 ? (
+                    customers.map(customer => (
+                      <tr key={customer._id}>
+                        <td>{customer.name}</td>
+                        <td>{customer.projectName || 'N/A'}</td>
+                        <td>{customer.email}</td>
+                        <td>{customer.phone}</td>
+                        <td>{customer.budget || 'N/A'}</td>
+                        <td>{customer.startDate ? new Date(customer.startDate).toLocaleDateString() : 'N/A'}</td>
+                        <td>{customer.endDate ? new Date(customer.endDate).toLocaleDateString() : 'N/A'}</td>
+                        <td>{customer.adminNotes || 'N/A'}</td>
+                        <td><span className={`status-badge ${customer.status}`}>{customer.status}</span></td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="9">No projects found</td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
-              <button className="edit-btn" onClick={downloadPDF}>Download PDF</button>
-              <button className="delete-btn" onClick={() => setShowReport(false)}>Close</button>
+              <div className="report-actions">
+                <button className="download-pdf-btn" onClick={downloadPDF}>
+                  <i className="fas fa-download"></i> Download PDF
+                </button>
+                <button className="close-report-btn" onClick={() => setShowReport(false)}>
+                  <i className="fas fa-times"></i> Close
+                </button>
+              </div>
             </div>
           ) : (
             <div className="customer-table">
@@ -129,7 +172,6 @@ const CustomerList = ({ serviceType }) => {
                     <th>Project Name</th>
                     <th>Email</th>
                     <th>Phone</th>
-                  
                     <th>Budget</th>
                     <th>Start Date</th>
                     <th>End Date</th>
@@ -139,26 +181,31 @@ const CustomerList = ({ serviceType }) => {
                   </tr>
                 </thead>
                 <tbody>
-                  {customers.length > 0 ? customers.map(customer => (
-                    <tr key={customer._id} onClick={() => handleRowClick(customer._id)} style={{ cursor: 'pointer' }}>
-                      <td>{customer.name}</td>
-                      <td>{customer.projectName || 'N/A'}</td>
-                      <td>{customer.email}</td>
-                      <td>{customer.phone}</td>
-                      
-                      <td>{customer.budget || 'N/A'}</td>
-                      <td>{customer.startDate ? new Date(customer.startDate).toLocaleDateString() : 'N/A'}</td>
-                      <td>{customer.endDate ? new Date(customer.endDate).toLocaleDateString() : 'N/A'}</td>
-                      <td>{customer.adminNotes || 'N/A'}</td>
-                      <td><span className={`status-badge ${customer.status}`}>{customer.status}</span></td>
-                      <td onClick={e => e.stopPropagation()}>
-                        <button className="edit-btn" onClick={() => navigate(`/construction-company-react-app/editCustomer/${customer._id}`)}>Edit</button>
-                        <button className="delete-btn" onClick={() => handleDelete(customer._id)}>Delete</button>
-                      </td>
-                    </tr>
-                  )) : (
+                  {customers.length > 0 ? (
+                    customers.map(customer => (
+                      <tr key={customer._id} onClick={() => handleRowClick(customer._id)} style={{ cursor: 'pointer' }}>
+                        <td>{customer.name}</td>
+                        <td>{customer.projectName || 'N/A'}</td>
+                        <td>{customer.email}</td>
+                        <td>{customer.phone}</td>
+                        <td>{customer.budget || 'N/A'}</td>
+                        <td>{customer.startDate ? new Date(customer.startDate).toLocaleDateString() : 'N/A'}</td>
+                        <td>{customer.endDate ? new Date(customer.endDate).toLocaleDateString() : 'N/A'}</td>
+                        <td>{customer.adminNotes || 'N/A'}</td>
+                        <td><span className={`status-badge ${customer.status}`}>{customer.status}</span></td>
+                        <td onClick={e => e.stopPropagation()}>
+                          <button className="edit-btn" onClick={() => navigate(`/construction-company-react-app/editCustomer/${customer._id}`)}>
+                            Edit
+                          </button>
+                          <button className="delete-btn" onClick={() => handleDelete(customer._id)}>
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
                     <tr>
-                      <td colSpan="11">No projects found</td>
+                      <td colSpan="10">No projects found</td>
                     </tr>
                   )}
                 </tbody>
